@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <header>
     <div class="header-flex">
       <div class="logo-column">
@@ -19,7 +18,6 @@
       </div>
       <h1 class="header-title">Mecalux Pallet Detection</h1>
     </div>
-
     <nav>
       <a href="index.html">Introducción al problema</a>
       <a href="modelo.html">Modelo</a>
@@ -31,48 +29,76 @@
 
   <main>
     <h2>Resultados del modelo</h2>
-
     <p>Se muestran a continuación ejemplos visuales que demuestran el rendimiento del modelo tanto en imágenes como en vídeos de prueba.</p>
 
     <h3>Ejemplos de imágenes predichas</h3>
     <div class="gallery">
-      <!-- 20 imágenes con miniaturas -->
-      <img src="multimedia/prediccion1.png" onclick="openImageModal(this.src)" alt="Predicción 1">
-      <img src="multimedia/prediccion2.png" onclick="openImageModal(this.src)" alt="Predicción 2">
-      <img src="multimedia/prediccion3.png" onclick="openImageModal(this.src)" alt="Predicción 3">
-      <img src="multimedia/prediccion4.png" onclick="openImageModal(this.src)" alt="Predicción 4">
-      <img src="multimedia/prediccion5.png" onclick="openImageModal(this.src)" alt="Predicción 5">
-      <img src="multimedia/prediccion6.png" onclick="openImageModal(this.src)" alt="Predicción 6">
-      <img src="multimedia/prediccion7.png" onclick="openImageModal(this.src)" alt="Predicción 7">
-      <img src="multimedia/prediccion8.png" onclick="openImageModal(this.src)" alt="Predicción 8">
-      <img src="multimedia/prediccion9.png" onclick="openImageModal(this.src)" alt="Predicción 9">
-      <img src="multimedia/prediccion10.png" onclick="openImageModal(this.src)" alt="Predicción 10">
-      <img src="multimedia/prediccion11.png" onclick="openImageModal(this.src)" alt="Predicción 11">
-      <img src="multimedia/prediccion12.png" onclick="openImageModal(this.src)" alt="Predicción 12">
-      <img src="multimedia/prediccion13.png" onclick="openImageModal(this.src)" alt="Predicción 13">
-      <img src="multimedia/prediccion14.png" onclick="openImageModal(this.src)" alt="Predicción 14">
-      <img src="multimedia/prediccion15.png" onclick="openImageModal(this.src)" alt="Predicción 15">
-      <img src="multimedia/prediccion16.png" onclick="openImageModal(this.src)" alt="Predicción 16">
-      <img src="multimedia/prediccion17.png" onclick="openImageModal(this.src)" alt="Predicción 17">
-      <img src="multimedia/prediccion18.png" onclick="openImageModal(this.src)" alt="Predicción 18">
-      <img src="multimedia/prediccion19.png" onclick="openImageModal(this.src)" alt="Predicción 19">
-      <img src="multimedia/prediccion20.png" onclick="openImageModal(this.src)" alt="Predicción 20">
+      <!-- 21 imágenes -->
+      <!-- Usa un bucle o copia-pega esto para cada una -->
+      <!-- Las imágenes se abren en un modal -->
+      <!-- Puedes cambiar los nombres según tus archivos -->
+      <img src="multimedia/prediccion1.png" alt="Predicción 1" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion2.png" alt="Predicción 2" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion3.png" alt="Predicción 3" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion4.png" alt="Predicción 4" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion5.png" alt="Predicción 5" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion6.png" alt="Predicción 6" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion7.png" alt="Predicción 7" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion8.png" alt="Predicción 8" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion9.png" alt="Predicción 9" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion10.png" alt="Predicción 10" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion11.png" alt="Predicción 11" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion12.png" alt="Predicción 12" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion13.png" alt="Predicción 13" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion14.png" alt="Predicción 14" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion15.png" alt="Predicción 15" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion16.png" alt="Predicción 16" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion17.png" alt="Predicción 17" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion18.png" alt="Predicción 18" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion19.png" alt="Predicción 19" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion20.png" alt="Predicción 20" onclick="openImageModal(this.src)">
+      <img src="multimedia/prediccion21.png" alt="Predicción 21" onclick="openImageModal(this.src)">
     </div>
 
     <h3 style="margin-top: 40px;">Vídeos de prueba</h3>
     <div class="gallery">
-      <video src="multimedia/video1.mp4" onclick="openVideoModal(this.src)" muted></video>
-      <video src="multimedia/video2.mp4" onclick="openVideoModal(this.src)" muted></video>
-      <video src="multimedia/video3.mp4" onclick="openVideoModal(this.src)" muted></video>
-      <video src="multimedia/video4.mp4" onclick="openVideoModal(this.src)" muted></video>
-      <video src="multimedia/video5.mp4" onclick="openVideoModal(this.src)" muted></video>
-      <video src="multimedia/video6.mp4" onclick="openVideoModal(this.src)" muted></video>
-      <video src="multimedia/video7.mp4" onclick="openVideoModal(this.src)" muted></video>
-      <video src="multimedia/video8.mp4" onclick="openVideoModal(this.src)" muted></video>
-      <video src="multimedia/video9.mp4" onclick="openVideoModal(this.src)" muted></video>
-      <video src="multimedia/video10.mp4" onclick="openVideoModal(this.src)" muted></video>
-      <video src="multimedia/video11.mp4" onclick="openVideoModal(this.src)" muted></video>
-      <video src="multimedia/video12.mp4" onclick="openVideoModal(this.src)" muted></video>
+      <!-- Cada miniatura enlaza al vídeo en Google Drive -->
+      <a href="https://drive.google.com/file/d/17spKkGQlv-y-l1FZacynkYv2r0KIZsnW/view" target="_blank">
+        <img src="multimedia/video1-thumb.jpg" alt="Video 1">
+      </a>
+      <a href="https://drive.google.com/file/d/12rmyOY5jxr7O8PaGEM1MwWMttFoKIvX2/view" target="_blank">
+        <img src="multimedia/video2-thumb.jpg" alt="Video 2">
+      </a>
+      <a href="https://drive.google.com/file/d/1oQw24wFMcBnNkgs8iK56BWeAocEkbP21/view" target="_blank">
+        <img src="multimedia/video3-thumb.jpg" alt="Video 3">
+      </a>
+      <a href="https://drive.google.com/file/d/1aJ9bxYiDD9jW_-gV3ulFreiOAy3qqAEi/view" target="_blank">
+        <img src="multimedia/video4-thumb.jpg" alt="Video 4">
+      </a>
+      <a href="https://drive.google.com/file/d/1a2ro77XuYJlWohp3seW4OaTT0G3QZDb_/view" target="_blank">
+        <img src="multimedia/video5-thumb.jpg" alt="Video 5">
+      </a>
+      <a href="https://drive.google.com/file/d/1mUUah1oUqCfka5wHpJFNUq8uf8KSdRHt/view" target="_blank">
+        <img src="multimedia/video6-thumb.jpg" alt="Video 6">
+      </a>
+      <a href="https://drive.google.com/file/d/1IRbH1v_pPUJ6HEqfY9opMmLaf4AcYq3-/view" target="_blank">
+        <img src="multimedia/video7-thumb.jpg" alt="Video 7">
+      </a>
+      <a href="https://drive.google.com/file/d/1vnKwH9zMAVzi5hTUYF3_EyCkbi6exZK-/view" target="_blank">
+        <img src="multimedia/video8-thumb.jpg" alt="Video 8">
+      </a>
+      <a href="https://drive.google.com/file/d/1x-IPZKNMWmF2H7ME4dGpJUiUzBBCfnug/view" target="_blank">
+        <img src="multimedia/video9-thumb.jpg" alt="Video 9">
+      </a>
+      <a href="https://drive.google.com/file/d/1UgKxXKpJQHYC-n-lWSCqMWg-z95Gy7v-/view" target="_blank">
+        <img src="multimedia/video10-thumb.jpg" alt="Video 10">
+      </a>
+      <a href="https://drive.google.com/file/d/1msGmviGj5_Ov9AJx1pbN5A8Jg-Mfjlgt/view" target="_blank">
+        <img src="multimedia/video11-thumb.jpg" alt="Video 11">
+      </a>
+      <a href="https://drive.google.com/file/d/1MX4IloNqesmftj-D61zujHe4cB459TQe/view" target="_blank">
+        <img src="multimedia/video12-thumb.jpg" alt="Video 12">
+      </a>
     </div>
   </main>
 
@@ -80,41 +106,23 @@
     &copy; 2025 Marc Rubí · Mecalux Pallet Detection
   </footer>
 
-  <!-- Modal Imagen -->
-  <div id="imageModal" class="modal" onclick="closeModal('imageModal')">
+  <!-- Modal para imágenes -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
     <span class="close">&times;</span>
-    <img id="modalImage" class="modal-content" alt="Imagen ampliada">
-  </div>
-
-  <!-- Modal Video -->
-  <div id="videoModal" class="modal" onclick="closeModal('videoModal')">
-    <span class="close">&times;</span>
-    <video id="modalVideo" class="modal-content" controls autoplay></video>
+    <img id="modalImage" class="modal-content">
   </div>
 
   <script>
     function openImageModal(src) {
-      document.getElementById("modalImage").src = src;
-      document.getElementById("imageModal").style.display = "block";
+      document.getElementById('imageModal').style.display = 'block';
+      document.getElementById('modalImage').src = src;
     }
 
-    function openVideoModal(src) {
-      const modal = document.getElementById("videoModal");
-      const video = document.getElementById("modalVideo");
-      video.src = src;
-      modal.style.display = "block";
-    }
-
-    function closeModal(modalId) {
-      const modal = document.getElementById(modalId);
-      modal.style.display = "none";
-      if (modalId === "videoModal") {
-        document.getElementById("modalVideo").pause();
-      }
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+      document.getElementById('modalImage').src = '';
     }
   </script>
-
 </body>
 </html>
-
 
