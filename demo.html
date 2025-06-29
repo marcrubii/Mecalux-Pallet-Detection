@@ -60,9 +60,9 @@
       </div>
 
       <div style="margin: 25px 0;">
-        <a href="best.pt" download
+        <a href="best.zip" download
            style="display: inline-block; padding: 12px 25px; background-color: #28a745; color: white; text-decoration: none; font-size: 1em; border-radius: 8px; margin-right: 15px;">
-          Descargar best.pt
+          Descargar best.zip
         </a>
 
         <a href="data_yaml.zip" download
@@ -78,7 +78,7 @@
         <pre style="background: #f4f4f4; padding: 20px; border-radius: 8px; font-size: 0.85em; overflow-x: auto;"><code># Instalar ultralytics
 !pip install -q ultralytics
 
-# Subir imagenes_nuevas.zip (imágenes que quieras predecir) best.pt y data.yaml (los archivos tienen que tener exactamente el mismo nombre)
+# Subir imagenes_nuevas.zip (imágenes que quieras predecir), best.pt y data.yaml
 from google.colab import files
 uploaded = files.upload()
 
@@ -99,7 +99,7 @@ for ruta in glob.glob('/content/imagenes_nuevas/**/*.*', recursive=True):
         except Exception:
             pass
 
-# Autolabel con best.pt. Usa el modelo para predecir las clases
+# Autolabel con best.pt
 !yolo detect predict model=best.pt \
   source=/content/imagenes_nuevas \
   save_txt \
@@ -107,7 +107,7 @@ for ruta in glob.glob('/content/imagenes_nuevas/**/*.*', recursive=True):
   project=/content/predicciones \
   name=resultados
 
-# Filtrar por confianza ≥ 0.7. Puedes cambiar este valor, mantenerlo a 0.7 o bajarlo a 0.4 si le cuesta prededcir.
+# Filtrar por confianza ≥ 0.7
 ruta_labels = '/content/predicciones/resultados/labels'
 filtradas = '/content/predicciones_filtradas'
 if os.path.exists(filtradas): shutil.rmtree(filtradas)
