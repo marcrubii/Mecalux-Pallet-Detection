@@ -111,7 +111,7 @@ p {
   transform: scale(1.05);
 }
 
-/* Modal */
+/* Modal común */
 .modal {
   display: none;
   position: fixed;
@@ -128,10 +128,25 @@ p {
 .modal-content {
   display: block;
   margin: auto;
+}
+
+/* Imagen dentro del modal */
+#modalImage.modal-content {
   max-width: 90%;
   max-height: 80vh;
 }
 
+/* Vídeo dentro del modal (más grande) */
+#modalVideo.modal-content {
+  width: 80vw;
+  height: 80vh;
+  max-width: 1280px;
+  max-height: 720px;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Botón de cierre del modal */
 .close {
   position: absolute;
   top: 20px;
@@ -142,7 +157,7 @@ p {
   cursor: pointer;
 }
 
-/* Botón */
+/* Botón estilo */
 .demo-button {
   background-color: #004080;
   color: white;
@@ -167,4 +182,3 @@ footer {
   font-size: 0.85em;
   color: #666;
 }
-
