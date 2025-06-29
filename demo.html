@@ -2,13 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mecalux Pallet Detection</title>
+  <title>Demo - Mecalux Pallet Detection</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
-    <!-- Encabezado con logos a la izquierda y título centrado -->
     <div class="header-flex">
       <div class="logo-column">
         <a href="https://www.mecalux.es" target="_blank">
@@ -30,12 +29,109 @@
     </nav>
   </header>
 
-  <main class="centered-main">
-    <h2>Probar el modelo</h2>
-    <p>Puedes acceder al modelo entrenado en Hugging Face desde el siguiente botón:</p>
-    <a href="https://huggingface.co/spaces/marcrubii/MecaluxPalletDetection" target="_blank" class="demo-button">
-      ¡Pon a prueba con tus imágenes o videos!
-    </a>
+  <main>
+    <h2 style="text-align: center;">Prueba el modelo tú mismo</h2>
+    <p style="text-align: center;">
+      Puedes acceder a la versión web del modelo a través del siguiente enlace:
+    </p>
+
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="https://huggingface.co/spaces/marcrubii/MecaluxPalletDetection"
+         target="_blank"
+         style="display: inline-block; padding: 15px 30px; background-color: #007bff; color: white; text-decoration: none; font-size: 1.1em; border-radius: 8px;">
+        ¡Sube tu imagen o vídeo y pruébalo aquí!
+      </a>
+    </div>
+
+    <p style="margin-top: 30px; font-size: 0.95em; color: #555; text-align: center;">
+      Recuerda que Hugging Face es un entorno gratuito, por lo que utilizará <strong>CPU</strong>. Las predicciones, especialmente en vídeo, pueden tardar más.<br>
+      Además, el modelo no es perfecto y puede fallar en imágenes con mala calidad o paquetes mal centrados. Ha sido diseñado para entornos logísticos controlados.
+    </p>
+
+    <hr style="margin: 50px 0;">
+
+    <section style="text-align: center;">
+      <h2>¡Implementa el modelo tú mismo!</h2>
+      <p>Puedes probar el modelo en Google Colab con tus propias imágenes.</p>
+
+      <div style="max-width: 800px; margin: 0 auto; text-align: left; font-size: 0.95em; background-color: #f8f8f8; padding: 20px; border-radius: 10px; border: 1px solid #ddd;">
+        <p><strong>best.pt</strong>: archivo con los pesos del modelo entrenado.</p>
+        <p><strong>data.yaml</strong>: archivo de configuración con las clases del dataset. A la hora de predecir, ayuda a poner los nombres de las clases y la estructura general.</p>
+      </div>
+
+      <div style="margin: 25px 0;">
+        <a href="best.pt" download
+           style="display: inline-block; padding: 12px 25px; background-color: #28a745; color: white; text-decoration: none; font-size: 1em; border-radius: 8px; margin-right: 15px;">
+          Descargar best.pt
+        </a>
+
+        <a href="data_yaml.zip" download
+           style="display: inline-block; padding: 12px 25px; background-color: #ffc107; color: black; text-decoration: none; font-size: 1em; border-radius: 8px;">
+          Descargar data.yaml
+        </a>
+      </div>
+
+      <details style="max-width: 900px; margin: 0 auto; text-align: left;">
+        <summary style="cursor: pointer; font-size: 1.1em; font-weight: bold; margin-bottom: 10px;">
+          Ver instrucciones y código para Google Colab
+        </summary>
+        <pre style="background: #f4f4f4; padding: 20px; border-radius: 8px; font-size: 0.85em; overflow-x: auto;"><code># Instalar ultralytics
+!pip install -q ultralytics
+
+# Subir imagenes_nuevas.zip (imágenes que quieras predecir) best.pt y data.yaml (los archivos tienen que tener exactamente el mismo nombre)
+from google.colab import files
+uploaded = files.upload()
+
+# Extraer imágenes
+!rm -rf /content/imagenes_nuevas/
+!mkdir -p /content/imagenes_nuevas
+!unzip -oq imagenes_nuevas.zip -d /content/imagenes_nuevas
+
+# Mover imágenes desde subcarpetas
+import os, glob, shutil
+for ruta in glob.glob('/content/imagenes_nuevas/**/*.*', recursive=True):
+    if ruta.lower().endswith(('.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff', '.webp')):
+        try:
+            nombre = os.path.basename(ruta)
+            destino = os.path.join('/content/imagenes_nuevas/', nombre)
+            if not os.path.samefile(ruta, destino):
+                shutil.move(ruta, destino)
+        except Exception:
+            pass
+
+# Autolabel con best.pt. Usa el modelo para predecir las clases
+!yolo detect predict model=best.pt \
+  source=/content/imagenes_nuevas \
+  save_txt \
+  save_conf \
+  project=/content/predicciones \
+  name=resultados
+
+# Filtrar por confianza ≥ 0.7. Puedes cambiar este valor, mantenerlo a 0.7 o bajarlo a 0.4 si le cuesta prededcir.
+ruta_labels = '/content/predicciones/resultados/labels'
+filtradas = '/content/predicciones_filtradas'
+if os.path.exists(filtradas): shutil.rmtree(filtradas)
+os.makedirs(filtradas, exist_ok=True)
+
+for archivo in os.listdir(ruta_labels):
+    if archivo.endswith(".txt"):
+        ruta = os.path.join(ruta_labels, archivo)
+        lineas_filtradas = []
+        with open(ruta, 'r') as f:
+            for linea in f:
+                partes = linea.strip().split()
+                if len(partes) > 5 and float(partes[-1]) >= 0.7:
+                    lineas_filtradas.append(" ".join(partes[:-1]))
+        if lineas_filtradas:
+            with open(os.path.join(filtradas, archivo), 'w') as f:
+                f.write("\n".join(lineas_filtradas))
+
+# Comprimir y descargar
+!zip -qr /content/labels_filtradas.zip /content/predicciones_filtradas
+from google.colab import files
+files.download('/content/labels_filtradas.zip')</code></pre>
+      </details>
+    </section>
   </main>
 
   <footer>
