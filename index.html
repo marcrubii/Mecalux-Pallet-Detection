@@ -1,61 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Detector de Palets y Paquetes</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Introducción al problema</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header>
-    <h1>Detector de Paquetes y Palets</h1>
+    <!-- Encabezado con logos y título -->
+    <div class="header-flex">
+      <div class="logo-column">
+        <a href="https://www.mecalux.es" target="_blank">
+          <img src="mecalux-logo.png" alt="Logo Mecalux" class="logo">
+        </a>
+        <a href="https://www.upc.edu" target="_blank">
+          <img src="upc-logo.png" alt="Logo UPC" class="logo">
+        </a>
+      </div>
+      <h1 class="header-title">Mecalux Pallet Detection</h1>
+    </div>
+
     <nav>
-      <a href="#intro">Introducción</a>
-      <a href="#modelo">Modelo</a>
-      <a href="#resultados">Resultados</a>
-      <a href="#demo">Demo</a>
-      <a href="#contacto">Contacto</a>
+      <a href="index.html">Introducción al problema</a>
+      <a href="modelo.html">Modelo</a>
+      <a href="resultados.html">Resultados</a>
+      <a href="demo.html">Pruébalo tú mismo</a>
+      <a href="contacto.html">Contacto</a>
     </nav>
   </header>
 
-  <section id="intro">
-    <h2>Introducción</h2>
+  <main>
+    <h2>Introducción y planteamiento del problema</h2>
+
     <p>
-      Este proyecto aplica técnicas de visión por computador para detectar
-      anomalías logísticas como paquetes mal embalados o palets rotos. 
-      El sistema ha sido entrenado con imágenes reales y sintéticas para mejorar la robustez en entornos industriales.
+      En entornos industriales de logística y almacenaje, la inspección de palets y mercancías en el momento de la recepción es una etapa muy importante y necesaria para garantizar la integridad del suministro, reducir errores y mantener estándares de seguridad. A lo largo de los tiempos, este proceso ha sido realizado manualmente por operarios, lo cual en la gran mayoría de casos se hace de forma subjetiva y a experiencia de cada uno. A la larga resulta costoso, lento y propenso a errores cuando se realiza a gran escala.
     </p>
-  </section>
 
-  <section id="modelo">
-    <h2>Modelo</h2>
     <p>
-      El modelo está basado en la arquitectura YOLOv11x y ha sido optimizado para identificar problemas en el estado del palet
-      y el embalaje de los paquetes en tiempo real. 
-      Se ha entrenado con más de 2000 imágenes anotadas manualmente.
+      Palets dañados o fisurados, cargas mal embaladas o con deformaciones pueden generar desde ineficiencias en el transporte hasta graves riesgos de seguridad durante su almacenamiento o manipulación.
     </p>
-  </section>
 
-  <section id="resultados">
-    <h2>Resultados</h2>
-    <img src="ejemplo1.png" alt="Predicción sobre imagen 1" width="500" />
-    <video src="demo-resultados.mp4" controls width="500"></video>
-  </section>
-
-  <section id="demo">
-    <h2>Probar el modelo</h2>
-    <p>Puedes probar el modelo subiendo una imagen o vídeo en la siguiente demo online:</p>
-    <a href="https://huggingface.co/spaces/marcrubii/MecaluxPalletDetection" target="_blank">
-      <button style="padding: 10px 20px; font-size: 16px;">Abrir demo en Hugging Face</button>
-    </a>
-  </section>
-
-  <section id="contacto">
-    <h2>Contacto</h2>
     <p>
-      Autor: Marc Rubii <br />
-      Correo: contacto@ejemplo.com
+      Con el objetivo de resolver este problema, se ha desarrollado un sistema de visión por computador basado en YOLOv11x, una de las arquitecturas más recientes y potentes de la familia YOLO (You Only Look Once) para detección de objetos. Esta versión presenta mejoras notables respecto a versiones anteriores, como una mayor capacidad de agregación espacial de características, módulos de convolución dinámica y funciones de pérdida optimizadas tanto para la localización como para la clasificación de objetos.
     </p>
-  </section>
+
+    <p>
+      Gracias a su diseño y entrenamiento, llega a ser una muy buena opción para tareas de inspección industrial en tiempo real, donde se requiere tanto rendimiento como fiabilidad.
+    </p>
+
+    <p>
+      El sistema está diseñado para integrarse en un entorno logístico mediante una cámara fija colocada en el punto de recepción de palets. La cámara captura imágenes de cada unidad entrante, los paquetes pasan de uno en uno junto con su carga y el modelo YOLOv11x ejecuta la detección de objetos para identificar y clasificar elementos clave como:
+    </p>
+
+    <ul>
+      <li><strong>Palets en buen estado o dañados</strong></li>
+      <li><strong>Paquetes con dimensiones correctas o incorrectas</strong></li>
+      <li><strong>Embalajes bien realizados o defectuosos</strong></li>
+    </ul>
+
+    <p>
+      Gracias a su capacidad para realizar detecciones multicategoría y su extracción de características a nivel profundo, YOLOv11x es capaz de identificar anomalías visuales sutiles, como fisuras en la madera del palet o errores en el film de embalaje.
+    </p>
+
+    <p>
+      El modelo ha sido entrenado con un conjunto de datos personalizado con seis clases específicas. Aproximadamente, se han usado un total de 2.600 imágenes (repartidas en 6 clases) que clasifican las diferentes opciones que se pueden tener en este entorno.
+    </p>
+
+    <p>
+      Gracias a este modelo, no solo se alivia la carga sobre los trabajadores humanos, sino que se garantiza una de las decisiones más importantes dentro de la industria logística: <strong>la objetividad</strong>. Decisiones más objetivas, consistentes y rápidas siendo este el verdadero objetivo a la hora de implementar este modelo.
+    </p>
+  </main>
+
+  <footer>
+    &copy; 2025 Marc Rubí · Mecalux Pallet Detection
+  </footer>
+
 </body>
 </html>
+
