@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detector de Palets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detector de Palets y Paquetes</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -20,28 +20,42 @@
 
   <section id="intro">
     <h2>Introducción</h2>
-    <p>Este proyecto usa visión por computador para detectar anomalías en logística...</p>
+    <p>
+      Este proyecto aplica técnicas de visión por computador para detectar
+      anomalías logísticas como paquetes mal embalados o palets rotos. 
+      El sistema ha sido entrenado con imágenes reales y sintéticas para mejorar la robustez en entornos industriales.
+    </p>
   </section>
 
   <section id="modelo">
-    <h2>Explicación del modelo</h2>
-    <p>Modelo YOLOv8 entrenado con imágenes sintéticas y reales de paquetes sobre palets...</p>
+    <h2>Modelo</h2>
+    <p>
+      El modelo está basado en la arquitectura YOLOv11x y ha sido optimizado para identificar problemas en el estado del palet
+      y el embalaje de los paquetes en tiempo real. 
+      Se ha entrenado con más de 2000 imágenes anotadas manualmente.
+    </p>
   </section>
 
   <section id="resultados">
     <h2>Resultados</h2>
-    <video src="resultados.mp4" controls></video>
-    <img src="resultado1.png" alt="Ejemplo" />
+    <img src="ejemplo1.png" alt="Predicción sobre imagen 1" width="500" />
+    <video src="demo-resultados.mp4" controls width="500"></video>
   </section>
 
   <section id="demo">
-    <h2>Prueba el modelo</h2>
-    <iframe src="https://huggingface.co/spaces/tu-usuario/demo-detector-palets" width="100%" height="600"></iframe>
+    <h2>Probar el modelo</h2>
+    <p>Puedes probar el modelo subiendo una imagen o vídeo en la siguiente demo online:</p>
+    <a href="https://huggingface.co/spaces/marcrubii/MecaluxPalletDetection" target="_blank">
+      <button style="padding: 10px 20px; font-size: 16px;">Abrir demo en Hugging Face</button>
+    </a>
   </section>
 
   <section id="contacto">
     <h2>Contacto</h2>
-    <p>Autor: Marc Rubí <br> Email: marc.rubi@estudiantat.upc.edu</p>
+    <p>
+      Autor: Marc Rubii <br />
+      Correo: contacto@ejemplo.com
+    </p>
   </section>
 </body>
 </html>
