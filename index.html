@@ -4,11 +4,18 @@
   <meta charset="UTF-8">
   <title>Introducción al problema</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    main {
+      background-color: #f9f9f9;
+      max-width: 95%;
+      margin: 60px auto 40px auto;
+      padding: 60px 40px;
+    }
+  </style>
 </head>
 <body>
 
   <header>
-    <!-- Encabezado con logos y título -->
     <div class="header-flex">
       <div class="logo-column">
         <a href="https://www.mecalux.es" target="_blank">
@@ -18,7 +25,12 @@
           <img src="upc-logo.png" alt="Logo UPC" class="logo">
         </a>
       </div>
-      <h1 class="header-title">Mecalux Pallet Detection</h1>
+      <div>
+        <h1 class="header-title">Mecalux Pallet Detection</h1>
+        <p style="font-style: italic; color: white; font-size: 0.8em; margin-top: -10px;">
+          Sistema automático para la inspección visual de palets y mercancías en tiempo real
+        </p>
+      </div>
     </div>
 
     <nav>
@@ -31,62 +43,95 @@
   </header>
 
   <main>
-    <h2>Introducción y planteamiento del problema</h2>
+    <h2 style="margin-top: 50px;">Introducción y planteamiento del problema</h2>
 
-    <!-- Cita destacada o frase de impacto -->
     <blockquote style="background-color: #eef5ff; padding: 15px 20px; border-left: 5px solid #004080; font-style: italic; margin-bottom: 30px;">
       “Un solo error en la inspección logística puede desencadenar una cadena de fallos en todo el proceso.”
     </blockquote>
 
     <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 30px;">
       <div style="flex: 1 1 400px; min-width: 300px;">
-        <p><strong>La inspección visual de palets</strong> en entornos logísticos sigue realizándose de forma manual, confiando en la experiencia de los operarios. Este enfoque implica una alta carga de trabajo, variabilidad y posibilidad de errores.</p>
-        <p>La inspección humana, aunque valiosa, está sujeta a <strong>fatiga, falta de estandarización y errores por omisión</strong>, especialmente cuando hay volumen elevado o presión de tiempo.</p>
-        <p>Por ello, se plantea una solución de <strong>visión por computador en tiempo real</strong>, basada en inteligencia artificial, que automatice el proceso y garantice una evaluación rápida y objetiva.</p>
-        <p>El objetivo es sustituir los juicios subjetivos por <strong>decisiones consistentes y verificables</strong>, reduciendo los tiempos de inspección y aumentando la fiabilidad en la detección de problemas logísticos.</p>
+        <p>
+          En logística industrial, la <strong>inspección de palets y paquetes en el punto de recepción</strong> es fundamental para evitar errores que comprometan la cadena de suministro.
+        </p>
+        <p>
+          A día de hoy, esta labor se sigue haciendo de forma <strong>manual</strong>, apoyándose en la observación de los operarios. El resultado es una inspección <strong>subjetiva, desigual y poco escalable</strong>, que depende de la experiencia personal y la carga de trabajo.
+        </p>
+        <p>
+          Esto implica <strong>ineficiencias, errores y tiempos muertos</strong> que afectan directamente a los costes operativos y al rendimiento de las instalaciones logísticas.
+        </p>
+        <div style="background-color: #e6f0fa; padding: 15px; border-left: 5px solid #004080; margin: 20px 0;">
+          <strong>Ventaja técnica:</strong> permite una inspección automatizada, constante y objetiva sin fatiga humana.
+        </div>
+        <p>
+          En este contexto surge la necesidad de una <strong>solución automática, objetiva y en tiempo real</strong> que permita tomar decisiones más precisas y reducir el margen de error humano.
+        </p>
       </div>
+
       <div style="flex: 1 1 300px; text-align: center;">
         <img src="inspeccion.png" alt="Inspección logística" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
         <p style="font-size: 0.9em; color: #555;">Figura 1. Inspección visual en recepción logística</p>
       </div>
     </div>
 
-    <!-- Mini estadísticas -->
     <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-around; margin-bottom: 40px; text-align: center;">
       <div style="flex: 1 1 250px; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <p style="font-size: 1.5em;">⏱️ +45 min/día</p>
-        <p><strong>Tiempo medio perdido</strong> en revisiones manuales por operario</p>
+        <p style="font-size: 1.5em;">+45 min/día</p>
+        <p><strong>Tiempo perdido</strong> en inspecciones manuales</p>
       </div>
       <div style="flex: 1 1 250px; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <p style="font-size: 1.5em;">📉 30%</p>
-        <p><strong>Error de inspección</strong>: paquetes defectuosos no detectados o clasificados erróneamente</p>
+        <p style="font-size: 1.5em;">30%</p>
+        <p><strong>Inspecciones con errores</strong> por fatiga o falta de precisión</p>
       </div>
       <div style="flex: 1 1 250px; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-        <p style="font-size: 1.5em;">💼 +80%</p>
-        <p><strong>Aumento de eficiencia</strong> con sistemas automáticos implantados</p>
+        <p style="font-size: 1.5em;">+80%</p>
+        <p><strong>Aumento de eficiencia</strong> con sistemas automatizados</p>
       </div>
     </div>
 
-    <!-- Separador -->
     <hr style="border: none; border-top: 2px solid #004080; margin: 30px 0;">
-    <h3 style="color: #004080; text-align: center; margin-bottom: 20px;">¿Por qué es un problema relevante?</h3>
+    <h3 style="color: #004080; text-align: center; margin-bottom: 20px;">Importancia del problema</h3>
 
-    <p>Palets dañados o fisurados, cargas mal embaladas o con deformaciones pueden generar desde ineficiencias en el transporte hasta graves riesgos de seguridad durante su almacenamiento o manipulación.</p>
-    <p>Para solventarlo, se ha desarrollado un sistema de visión por computador basado en <strong>YOLOv11x</strong>, una arquitectura avanzada de detección de objetos que permite <strong>clasificar y localizar anomalías</strong> en los palets y paquetes entrantes.</p>
-    <p>Este sistema se instala con una cámara fija en el punto de recepción. Cada unidad que entra es analizada automáticamente y se evalúa en tiempo real mediante las siguientes categorías:</p>
+    <p>
+      Palets dañados o fisurados, cargas mal embaladas o con deformaciones pueden generar desde ineficiencias en el transporte hasta graves riesgos de seguridad durante su almacenamiento o manipulación.
+    </p>
+
+    <div style="background-color: #e6f0fa; padding: 15px; border-left: 5px solid #004080; margin: 30px 0;">
+      <strong>Idea clave:</strong> Automatizar la inspección reduce errores y mejora la seguridad operativa.
+    </div>
+
+    <p>
+      Con el objetivo de resolver este problema, se ha desarrollado un sistema de visión por computador basado en YOLOv11x, una de las arquitecturas más recientes y potentes de la familia YOLO (You Only Look Once) para detección de objetos.
+    </p>
+    <p>
+      Esta versión presenta mejoras notables respecto a versiones anteriores, como una mayor capacidad de agregación espacial de características, módulos de convolución dinámica y funciones de pérdida optimizadas tanto para la localización como para la clasificación de objetos.
+    </p>
+
+    <p>
+      El sistema está diseñado para integrarse en un entorno logístico mediante una cámara fija colocada en el punto de recepción de palets. La cámara captura imágenes de cada unidad entrante, los paquetes pasan de uno en uno junto con su carga y el modelo YOLOv11x ejecuta la detección de objetos para identificar y clasificar elementos clave como:
+    </p>
 
     <ul>
-      <li>✅ <strong>Palets en buen estado o dañados</strong></li>
-      <li>📦 <strong>Paquetes con dimensiones correctas o incorrectas</strong></li>
-      <li>🔒 <strong>Embalajes bien realizados o defectuosos</strong></li>
+      <li><strong>Palets en buen estado o dañados</strong></li>
+      <li><strong>Paquetes con dimensiones correctas o incorrectas</strong></li>
+      <li><strong>Embalajes bien realizados o defectuosos</strong></li>
     </ul>
 
-    <p>YOLOv11x permite detectar <strong>errores visuales sutiles</strong> como fisuras en madera, film roto o deformaciones, gracias a su capacidad de extracción de características profundas y detección multicategoría.</p>
-    <p>El modelo ha sido entrenado con un dataset personalizado de más de <strong>2.600 imágenes</strong> divididas en 6 clases específicas, representando condiciones reales de entorno logístico.</p>
+    <p>
+      Gracias a su capacidad para realizar detecciones multicategoría y su extracción de características a nivel profundo, YOLOv11x es capaz de identificar anomalías visuales sutiles, como fisuras en la madera del palet o errores en el film de embalaje.
+    </p>
 
-    <div style="background-color: #f0f8ff; padding: 15px; border-left: 4px solid #004080; margin-top: 30px;">
-      <p><strong>Gracias a este modelo, se reduce la carga humana y se mejora la objetividad en las decisiones críticas del proceso logístico.</strong></p>
-    </div>
+    <p>
+      El modelo ha sido entrenado con un conjunto de datos personalizado con seis clases específicas. Aproximadamente, se han usado un total de 2.600 imágenes (repartidas en 6 clases) que clasifican las diferentes opciones que se pueden tener en este entorno.
+    </p>
+
+    <p>
+      Gracias a este modelo, no solo se alivia la carga sobre los trabajadores humanos, sino que se garantiza una de las decisiones más importantes dentro de la industria logística: <strong>la objetividad</strong>. Decisiones más objetivas, consistentes y rápidas siendo este el verdadero objetivo a la hora de implementar este modelo.
+    </p>
+
+    <p style="text-align: center; font-style: italic; font-size: 1.1em; margin-top: 50px;">
+      Una inspección inteligente garantiza una logística eficiente y segura.
+    </p>
   </main>
 
   <footer>
