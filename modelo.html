@@ -4,11 +4,19 @@
   <meta charset="UTF-8">
   <title>Modelo</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    main {
+      background-color: #f9f9f9;
+      max-width: 85%;
+      margin: 60px auto 40px auto;
+      padding: 60px 60px;
+      border-radius: 12px;
+    }
+  </style>
 </head>
 <body>
 
   <header>
-    <!-- Encabezado con logos y título -->
     <div class="header-flex">
       <div class="logo-column">
         <a href="https://www.mecalux.es" target="_blank">
@@ -18,8 +26,12 @@
           <img src="upc-logo.png" alt="Logo UPC" class="logo">
         </a>
       </div>
-
-      <h1 class="header-title">Mecalux Pallet Detection</h1>
+      <div>
+        <h1 class="header-title">Mecalux Pallet Detection</h1>
+        <p style="font-style: italic; color: white; font-size: 0.8em; margin-top: 8px;">
+          Sistema automático para la inspección visual de palets y mercancías en tiempo real
+        </p>
+      </div>
     </div>
 
     <nav>
@@ -32,7 +44,11 @@
   </header>
 
   <main>
-    <h2>Modelo utilizado</h2>
+    <h2 style="margin-top: 0;">Modelo utilizado</h2>
+
+    <div style="background-color: #e6f0fa; padding: 15px; border-left: 5px solid #004080; margin: 30px 0;">
+      <strong>Idea clave:</strong> YOLOv11x permite detectar múltiples objetos con gran precisión y velocidad, incluso en condiciones logísticas reales.
+    </div>
 
     <p>
       Modelo basado en la arquitectura <strong>YOLOv11x</strong>, una de las versiones más avanzadas de la familia YOLO (You Only Look Once), que permite realizar detecciones de objetos en tiempo real con alta precisión y velocidad.
@@ -45,7 +61,7 @@
       <li><strong>Head:</strong> realiza las predicciones finales (clase, posición y confianza).</li>
     </ul>
 
-    <h3>Clases que detecta el modelo</h3>
+    <h3 style="color: #004080;">Clases que detecta el modelo</h3>
     <p>El modelo está entrenado para identificar 6 clases:</p>
     <ul>
       <li>Palet en buen estado</li>
@@ -56,7 +72,7 @@
       <li>Paquete con dimensiones incorrectas y embalaje incorrecto</li>
     </ul>
 
-    <h3>Entrenamiento del modelo</h3>
+    <h3 style="color: #004080;">Entrenamiento del modelo</h3>
     <p>
       Se utilizaron aproximadamente <strong>2.600 imágenes</strong> anotadas manualmente, generadas a partir de imágenes reales. El modelo se entrenó en Google Colab durante 8 horas utilizando una GPU NVIDIA A100 con resolución de 960 px y un total de 300 épocas.
     </p>
@@ -64,7 +80,7 @@
       Se aplicaron técnicas de <em>data augmentation</em> (rotación, iluminación, deformación, ruido) para mejorar la generalización del modelo.
     </p>
 
-    <h2>Evaluación del modelo</h2>
+    <h2 style="color: #004080;">Evaluación del modelo</h2>
     <ul>
       <li><strong>mAP@0.5 (50% de superposición):</strong> <span style="color: green;">99.4%</span></li>
       <li><strong>mAP@0.5:0.95 (más exigente):</strong> <span style="color: green;">97.0%</span></li>
@@ -72,16 +88,19 @@
       <li><strong>Recall:</strong> <span style="color: green;">98.9%</span></li>
     </ul>
 
-    <h3>¿Qué significan estas métricas?</h3>
+    <div style="background-color: #e6f0fa; padding: 15px; border-left: 5px solid #004080; margin: 30px 0;">
+      <strong>Idea clave:</strong> Un modelo robusto permite identificar errores en paquetes y palets incluso con variabilidad visual considerable.
+    </div>
+
+    <h3 style="color: #004080;">¿Qué significan estas métricas?</h3>
     <p><strong>Precisión:</strong> porcentaje de detecciones correctas respecto a todas las predicciones.</p>
     <p><strong>Recall:</strong> porcentaje de objetos reales detectados respecto al total real.</p>
     <p><strong>mAP@0.5:</strong> media de precisión considerando IoU ≥ 0.5 (más permisivo).</p>
     <p><strong>mAP@0.5:0.95:</strong> promedio de mAP en IoU de 0.5 a 0.95 (mucho más exigente y realista).</p>
 
-    <h3>Esquema del modelo</h3>
+    <h3 style="color: #004080;">Esquema del modelo</h3>
     <p>Flujo general del modelo entrenado: una de las muchas capas que compone el modelo</p>
 
-    <!-- Imagen con scroll horizontal + enlace ampliado -->
     <div style="max-width: 100%; overflow-x: auto; border: 1px solid #ccc; padding: 10px;">
       <a href="estructura_modelo_ampliada.png" target="_blank">
         <img src="estructura_modelo_ampliada.png" alt="Esquema completo del modelo YOLOv11x" style="display: block; max-width: none;">
@@ -91,6 +110,10 @@
     <p style="font-size: 0.9em; color: #555; text-align: center; font-style: italic;">
       Haz clic en la imagen para verla ampliada en una nueva pestaña.
     </p>
+
+    <div style="text-align: center; font-style: italic; font-size: 1.2em; font-weight: bold; background-color: #e6f0fa; padding: 15px 20px; margin-top: 50px; border-left: 5px solid #004080;">
+      Precisión, velocidad y adaptabilidad: pilares clave para optimizar la inspección logística con visión por computador.
+    </div>
   </main>
 
   <footer>
