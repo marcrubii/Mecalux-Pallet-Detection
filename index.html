@@ -12,6 +12,45 @@
       padding: 60px 60px;
       border-radius: 12px;
     }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .appear {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .subrayado-animado {
+      display: inline-block;
+      position: relative;
+    }
+
+    .subrayado-animado::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #004080;
+      animation: expandSubrayado 1s ease-out;
+    }
+
+    @keyframes expandSubrayado {
+      from { width: 0; }
+      to { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -44,38 +83,38 @@
   </header>
 
   <main>
-    <h2 style="margin-top: -10px;">Introducción y planteamiento del problema</h2>
+    <h2 class="fade-in subrayado-animado">Introducción y planteamiento del problema</h2>
 
-    <blockquote style="background-color: #eef5ff; padding: 15px 20px; font-style: italic; margin-bottom: 30px;">
-      “Un solo error en la inspección logística puede desencadenar una cadena de fallos en todo el proceso.”
+    <blockquote class="fade-in" style="background-color: #eef5ff; padding: 15px 20px; font-style: italic; margin-bottom: 30px;">
+      Un solo error en la inspección logística puede desencadenar una cadena de fallos en todo el proceso.
     </blockquote>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 30px;">
+    <div class="fade-in" style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start; margin-bottom: 30px;">
       <div style="flex: 1 1 400px; min-width: 300px;">
-        <p>
+        <p class="fade-in">
           En logística industrial, la <strong>inspección de palets y paquetes en el punto de recepción</strong> es fundamental para evitar errores que comprometan la cadena de suministro.
         </p>
-        <p>
+        <p class="fade-in">
           A día de hoy, esta labor se sigue haciendo de forma <strong>manual</strong>, apoyándose en la observación de los operarios. El resultado es una inspección <strong>subjetiva, desigual y poco escalable</strong>, que depende de la experiencia personal y la carga de trabajo.
         </p>
-        <p>
+        <p class="fade-in">
           Esto implica <strong>ineficiencias, errores y tiempos muertos</strong> que afectan directamente a los costes operativos y al rendimiento de las instalaciones logísticas.
         </p>
-        <div style="background-color: #e6f0fa; padding: 15px; border-left: 5px solid #004080; margin: 20px 0;">
+        <div class="fade-in" style="background-color: #e6f0fa; padding: 15px; border-left: 5px solid #004080; margin: 20px 0;">
           <strong>Ventaja técnica:</strong> permite una inspección automatizada, constante y objetiva sin fatiga humana.
         </div>
-        <p>
+        <p class="fade-in">
           En este contexto surge la necesidad de una <strong>solución automática, objetiva y en tiempo real</strong> que permita tomar decisiones más precisas y reducir el margen de error humano.
         </p>
       </div>
 
-      <div style="flex: 1 1 300px; text-align: center;">
+      <div class="fade-in" style="flex: 1 1 300px; text-align: center;">
         <img src="inspeccion.png" alt="Inspección logística" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
         <p style="font-size: 0.9em; color: #555;">Figura 1. Inspección visual en recepción logística</p>
       </div>
     </div>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-around; margin-bottom: 40px; text-align: center;">
+    <div class="fade-in" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-around; margin-bottom: 40px; text-align: center;">
       <div style="flex: 1 1 250px; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
         <p><strong>Tiempo medio invertido diariamente</strong> en inspecciones manuales</p>
         <p style="font-size: 1.5em;">+45 min/día</p>
@@ -90,47 +129,47 @@
       </div>
     </div>
 
-    <hr style="border: none; border-top: 2px solid #004080; margin: 30px 0;">
-    <h3 style="color: #004080; text-align: center; margin-bottom: 20px;">Importancia del problema</h3>
+    <hr class="fade-in" style="border: none; border-top: 2px solid #004080; margin: 30px 0;">
+    <h3 class="fade-in" style="color: #004080; text-align: center; margin-bottom: 20px;">Importancia del problema</h3>
 
-    <p>
+    <p class="fade-in">
       Palets dañados o fisurados, cargas mal embaladas o con deformaciones pueden generar desde ineficiencias en el transporte hasta graves riesgos de seguridad durante su almacenamiento o manipulación.
     </p>
 
-    <div style="background-color: #e6f0fa; padding: 15px; border-left: 5px solid #004080; margin: 30px 0;">
+    <div class="fade-in" style="background-color: #e6f0fa; padding: 15px; border-left: 5px solid #004080; margin: 30px 0;">
       <strong>Idea clave:</strong> Automatizar la inspección reduce errores y mejora la seguridad operativa.
     </div>
 
-    <p>
+    <p class="fade-in">
       Con el objetivo de resolver este problema, se ha desarrollado un sistema de visión por computador basado en YOLOv11x, una de las arquitecturas más recientes y potentes de la familia YOLO (You Only Look Once) para detección de objetos.
     </p>
-    <p>
+    <p class="fade-in">
       Esta versión presenta mejoras notables respecto a versiones anteriores, como una mayor capacidad de agregación espacial de características, módulos de convolución dinámica y funciones de pérdida optimizadas tanto para la localización como para la clasificación de objetos.
     </p>
 
-    <p>
+    <p class="fade-in">
       El sistema está diseñado para integrarse en un entorno logístico mediante una cámara fija colocada en el punto de recepción de palets. La cámara captura imágenes de cada unidad entrante, los paquetes pasan de uno en uno junto con su carga y el modelo YOLOv11x ejecuta la detección de objetos para identificar y clasificar elementos clave como:
     </p>
 
-    <ul>
+    <ul class="fade-in">
       <li><strong>Palets en buen estado o dañados</strong></li>
       <li><strong>Paquetes con dimensiones correctas o incorrectas</strong></li>
       <li><strong>Embalajes bien realizados o defectuosos</strong></li>
     </ul>
 
-    <p>
+    <p class="fade-in">
       Gracias a su capacidad para realizar detecciones multicategoría y su extracción de características a nivel profundo, YOLOv11x es capaz de identificar anomalías visuales sutiles, como fisuras en la madera del palet o errores en el film de embalaje.
     </p>
 
-    <p>
+    <p class="fade-in">
       El modelo ha sido entrenado con un conjunto de datos personalizado con seis clases específicas. Aproximadamente, se han usado un total de 2.600 imágenes (repartidas en 6 clases) que clasifican las diferentes opciones que se pueden tener en este entorno.
     </p>
 
-    <p>
+    <p class="fade-in">
       Gracias a este modelo, no solo se alivia la carga sobre los trabajadores humanos, sino que se garantiza una de las decisiones más importantes dentro de la industria logística: <strong>la objetividad</strong>. Decisiones más objetivas, consistentes y rápidas siendo este el verdadero objetivo a la hora de implementar este modelo.
     </p>
 
-    <div style="text-align: center; font-style: italic; font-size: 1.2em; font-weight: bold; background-color: #e6f0fa; padding: 15px 20px; margin-top: 50px; border-radius: 10px;">
+    <div class="fade-in" style="text-align: center; font-style: italic; font-size: 1.2em; font-weight: bold; background-color: #e6f0fa; padding: 15px 20px; margin-top: 50px; border-radius: 10px;">
       Una inspección inteligente garantiza una logística eficiente y segura.
     </div>
   </main>
@@ -138,6 +177,6 @@
   <footer>
     &copy; 2025 Marc Rubí · Mecalux Pallet Detection
   </footer>
-
 </body>
 </html>
+

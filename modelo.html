@@ -12,10 +12,105 @@
       padding: 60px 60px;
       border-radius: 12px;
     }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .appear {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .subrayado-animado {
+      display: inline-block;
+      position: relative;
+    }
+    .subrayado-animado::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #004080;
+      animation: expandSubrayado 1s ease-out;
+    }
+    @keyframes expandSubrayado {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .tarjetas-fila {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .tarjeta {
+      flex: 1 1 calc(30% - 20px);
+      background: linear-gradient(135deg, #fff3cd, #ffeeba);
+      border: 1px solid #f0ad4e;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+
+    .galeria img {
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.02);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding: 0;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      text-align: center;
+    }
+
+    .modal-content {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 90%;
+      max-height: 90%;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
   </style>
 </head>
 <body>
-
   <header>
     <div class="header-flex">
       <div class="logo-column">
@@ -27,8 +122,8 @@
         </a>
       </div>
       <div>
-        <h1 class="header-title">Mecalux Pallet Detection</h1>
-        <p style="font-style: italic; color: white; font-size: 0.8em; margin-top: 8px;">
+        <h1 class="header-title" style="margin-bottom: 2px;">Mecalux Pallet Detection</h1>
+        <p style="font-style: italic; color: white; font-size: 0.8em; margin: 0;">
           Sistema automático para la inspección visual de palets y mercancías en tiempo real
         </p>
       </div>
@@ -44,75 +139,55 @@
   </header>
 
   <main>
-    <h2 style="margin-top: 0;">Modelo utilizado</h2>
+    <h2 class="fade-in subrayado-animado">Modelo utilizado</h2>
 
-    <div style="background-color: #e6f0fa; padding: 15px; border-left: 5px solid #004080; margin: 30px 0;">
-      <strong>Idea clave:</strong> YOLOv11x permite detectar múltiples objetos con gran precisión y velocidad, incluso en condiciones logísticas reales.
-    </div>
-
-    <p>
+    <p class="fade-in">
       Modelo basado en la arquitectura <strong>YOLOv11x</strong>, una de las versiones más avanzadas de la familia YOLO (You Only Look Once), que permite realizar detecciones de objetos en tiempo real con alta precisión y velocidad.
     </p>
 
-    <p>YOLOv11x se estructura en tres bloques principales:</p>
-    <ul>
-      <li><strong>Backbone:</strong> extrae características relevantes de la imagen.</li>
-      <li><strong>Neck:</strong> combina información multi-escala para refinar las detecciones.</li>
-      <li><strong>Head:</strong> realiza las predicciones finales (clase, posición y confianza).</li>
-    </ul>
-
-    <h3 style="color: #004080;">Clases que detecta el modelo</h3>
-    <p>El modelo está entrenado para identificar 6 clases:</p>
-    <ul>
-      <li>Palet en buen estado</li>
-      <li>Palet dañado o fisurado</li>
-      <li>Paquete con dimensiones correctas y embalaje correcto</li>
-      <li>Paquete con dimensiones correctas y embalaje incorrecto</li>
-      <li>Paquete con dimensiones incorrectas y embalaje correcto</li>
-      <li>Paquete con dimensiones incorrectas y embalaje incorrecto</li>
-    </ul>
-
-    <h3 style="color: #004080;">Entrenamiento del modelo</h3>
-    <p>
-      Se utilizaron aproximadamente <strong>2.600 imágenes</strong> anotadas manualmente, generadas a partir de imágenes reales. El modelo se entrenó en Google Colab durante 8 horas utilizando una GPU NVIDIA A100 con resolución de 960 px y un total de 300 épocas.
-    </p>
-    <p>
-      Se aplicaron técnicas de <em>data augmentation</em> (rotación, iluminación, deformación, ruido) para mejorar la generalización del modelo.
-    </p>
-
-    <h2 style="color: #004080;">Evaluación del modelo</h2>
-    <ul>
-      <li><strong>mAP@0.5 (50% de superposición):</strong> <span style="color: green;">99.4%</span></li>
-      <li><strong>mAP@0.5:0.95 (más exigente):</strong> <span style="color: green;">97.0%</span></li>
-      <li><strong>Precisión:</strong> <span style="color: green;">99.8%</span></li>
-      <li><strong>Recall:</strong> <span style="color: green;">98.9%</span></li>
-    </ul>
-
-    <div style="background-color: #e6f0fa; padding: 15px; border-left: 5px solid #004080; margin: 30px 0;">
-      <strong>Idea clave:</strong> Un modelo robusto permite identificar errores en paquetes y palets incluso con variabilidad visual considerable.
+    <div class="tarjetas-fila fade-in">
+      <div class="tarjeta">Backbone: Extrae características relevantes de la imagen.</div>
+      <div class="tarjeta">Neck: Combina información multi-escala para refinar las detecciones.</div>
+      <div class="tarjeta">Head: Realiza las predicciones finales (clase, posición y confianza).</div>
     </div>
 
-    <h3 style="color: #004080;">¿Qué significan estas métricas?</h3>
-    <p><strong>Precisión:</strong> porcentaje de detecciones correctas respecto a todas las predicciones.</p>
-    <p><strong>Recall:</strong> porcentaje de objetos reales detectados respecto al total real.</p>
-    <p><strong>mAP@0.5:</strong> media de precisión considerando IoU ≥ 0.5 (más permisivo).</p>
-    <p><strong>mAP@0.5:0.95:</strong> promedio de mAP en IoU de 0.5 a 0.95 (mucho más exigente y realista).</p>
-
-    <h3 style="color: #004080;">Esquema del modelo</h3>
-    <p>Flujo general del modelo entrenado: una de las muchas capas que compone el modelo</p>
-
-    <div style="max-width: 100%; overflow-x: auto; border: 1px solid #ccc; padding: 10px;">
-      <a href="estructura_modelo_ampliada.png" target="_blank">
-        <img src="estructura_modelo_ampliada.png" alt="Esquema completo del modelo YOLOv11x" style="display: block; max-width: none;">
-      </a>
+    <h3 class="fade-in" style="color: #004080;">Clases que detecta el modelo</h3>
+    <div class="tarjetas-fila fade-in">
+      <div class="tarjeta">Palet en buen estado</div>
+      <div class="tarjeta">Palet dañado o fisurado</div>
+      <div class="tarjeta">Paquete con dimensiones correctas y embalaje correcto</div>
+      <div class="tarjeta">Paquete con dimensiones correctas y embalaje incorrecto</div>
+      <div class="tarjeta">Paquete con dimensiones incorrectas y embalaje correcto</div>
+      <div class="tarjeta">Paquete con dimensiones incorrectas y embalaje incorrecto</div>
     </div>
 
-    <p style="font-size: 0.9em; color: #555; text-align: center; font-style: italic;">
-      Haz clic en la imagen para verla ampliada en una nueva pestaña.
-    </p>
+    <h3 class="fade-in" style="color: #004080;">Entrenamiento</h3>
+    <p class="fade-in">Se usaron <strong>2600 imágenes</strong> anotadas manualmente en Google Colab. Se pudo entrenar con rapidez gracias a utilizar una de las GPU más potentes del mundo actualmente (GPU NVIDIA A100), el modelo estuvo entrenándose durante un total de 300 iteraciones. Se aplicó también data augmentation para que el modelo pudiera aprender en situaciones más extremes y diferentes ángulos.</p>
+    <p class="fade-in"><strong>Desafíos:</strong> Dentro del dataset se tuvo en cuenta distintos puntos de vista del palet y  la carga, variaciones de iluminación, posibles combinaciones de cargas... Se tuvo en cuenta también equilibrar las 6 clases con un número similar de imágenes de prueba para que el modelo pueda generalizar correctamente.</p>
+    <p class="fade-in"><strong>Comparación:</strong> Tras varias pruebas y entrenamientos entre las versiones YOLOV8n, YOLOV8x y YOLOv11x, elegimos esta última porque, a parte de que es una versión más nueva (diferente arquitectura neuronal) actualmente es de las más potentes.</p>
 
-    <div style="text-align: center; font-style: italic; font-size: 1.2em; font-weight: bold; background-color: #e6f0fa; padding: 15px 20px; margin-top: 50px; border-left: 5px solid #004080;">
-      Precisión, velocidad y adaptabilidad: pilares clave para optimizar la inspección logística con visión por computador.
+    <h3 class="fade-in" style="color: #004080;">Galería de imágenes del dataset</h3>
+    <div class="galeria fade-in">
+      <img src="imagenes/1.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/2.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/3.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/4.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/5.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/6.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/7.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/8.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/9.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/10.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/11.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/12.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/13.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/14.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/15.png" alt="imagen" onclick="openImageModal(this)">
+      <img src="imagenes/16.png" alt="imagen" onclick="openImageModal(this)">
+    </div>
+
+    <div class="fade-in" style="text-align: center; margin-top: 40px;">
+      <a href="demo.html" style="background-color: #004080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">Ver el modelo en acción →</a>
     </div>
   </main>
 
@@ -120,5 +195,25 @@
     &copy; 2025 Marc Rubí · Mecalux Pallet Detection
   </footer>
 
+  <!-- Modal -->
+  <div id="imageModal" class="modal" onclick="closeModal(event)">
+    <img id="modalImg" class="modal-content" src="">
+  </div>
+
+  <script>
+    function openImageModal(imgElement) {
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImg");
+      modal.style.display = "block";
+      modalImg.src = imgElement.src;
+    }
+
+    function closeModal(e) {
+      if (e.target.id === "imageModal") {
+        document.getElementById("imageModal").style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>
+

@@ -4,6 +4,105 @@
   <meta charset="UTF-8">
   <title>Resultados</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    main {
+      background-color: #f9f9f9;
+      max-width: 85%;
+      margin: 60px auto 40px auto;
+      padding: 60px 60px;
+      border-radius: 12px;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .appear {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .subrayado-animado {
+      display: inline-block;
+      position: relative;
+    }
+    .subrayado-animado::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #004080;
+      animation: expandSubrayado 1s ease-out;
+    }
+    @keyframes expandSubrayado {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+
+    .galeria img {
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.02);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding: 0;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      text-align: center;
+    }
+
+    .modal-content {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 90%;
+      max-height: 90%;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+
+    .video-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .video-thumb:hover {
+      transform: scale(1.02);
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -16,7 +115,12 @@
           <img src="upc-logo.png" alt="Logo UPC" class="logo">
         </a>
       </div>
-      <h1 class="header-title">Mecalux Pallet Detection</h1>
+      <div>
+        <h1 class="header-title subrayado-animado" style="margin-bottom: 2px;">Mecalux Pallet Detection</h1>
+        <p style="font-style: italic; color: white; font-size: 0.8em; margin: 0;">
+          Sistema automático para la inspección visual de palets y mercancías en tiempo real
+        </p>
+      </div>
     </div>
     <nav>
       <a href="index.html">Introducción al problema</a>
@@ -28,49 +132,47 @@
   </header>
 
   <main>
-    <h2>Resultados del modelo</h2>
-    <p>Se muestran a continuación ejemplos visuales que demuestran el rendimiento del modelo tanto en imágenes como en vídeos de prueba.</p>
+    <h2 class="fade-in subrayado-animado">Resultados del modelo</h2>
+    <p class="fade-in">Se muestran a continuación ejemplos visuales que demuestran el rendimiento del modelo tanto en imágenes como en vídeos de prueba.</p>
 
-    <h3>Ejemplos de imágenes predichas</h3>
-    <div class="gallery">
-      <!-- 20 imágenes -->
-      <img src="multimedia/prediccion1.png" alt="Predicción 1" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion2.png" alt="Predicción 2" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion3.png" alt="Predicción 3" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion4.png" alt="Predicción 4" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion5.png" alt="Predicción 5" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion6.png" alt="Predicción 6" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion7.png" alt="Predicción 7" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion8.png" alt="Predicción 8" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion9.png" alt="Predicción 9" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion10.png" alt="Predicción 10" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion11.png" alt="Predicción 11" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion12.png" alt="Predicción 12" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion13.png" alt="Predicción 13" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion14.png" alt="Predicción 14" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion15.png" alt="Predicción 15" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion16.png" alt="Predicción 16" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion17.png" alt="Predicción 17" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion18.png" alt="Predicción 18" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion19.png" alt="Predicción 19" onclick="openImageModal(this.src)">
-      <img src="multimedia/prediccion20.png" alt="Predicción 20" onclick="openImageModal(this.src)">
+    <h3 class="fade-in" style="color: #004080;">Galería de imágenes del dataset</h3>
+    <div class="galeria fade-in">
+      <img src="multimedia/prediccion1.png" alt="imagen 1" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion2.png" alt="imagen 2" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion3.png" alt="imagen 3" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion4.png" alt="imagen 4" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion5.png" alt="imagen 5" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion6.png" alt="imagen 6" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion7.png" alt="imagen 7" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion8.png" alt="imagen 8" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion9.png" alt="imagen 9" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion10.png" alt="imagen 10" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion11.png" alt="imagen 11" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion12.png" alt="imagen 12" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion13.png" alt="imagen 13" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion14.png" alt="imagen 14" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion15.png" alt="imagen 15" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion16.png" alt="imagen 16" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion17.png" alt="imagen 17" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion18.png" alt="imagen 18" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion19.png" alt="imagen 19" onclick="openImageModal(this)">
+      <img src="multimedia/prediccion20.png" alt="imagen 20" onclick="openImageModal(this)">
     </div>
 
-    <h3 style="margin-top: 40px;">Vídeos de prueba</h3>
-    <div class="gallery">
-      <!-- Miniaturas con enlaces a vídeos ocultos de YouTube -->
-      <img src="multimedia/video1-thumb.jpg" alt="Video 1" onclick="openVideoModal('https://www.youtube.com/embed/_x2B9feLR_M')">
-      <img src="multimedia/video2-thumb.jpg" alt="Video 2" onclick="openVideoModal('https://www.youtube.com/embed/tc2GudUJOqM')">
-      <img src="multimedia/video3-thumb.jpg" alt="Video 3" onclick="openVideoModal('https://www.youtube.com/embed/H1WOykaLp3E')">
-      <img src="multimedia/video4-thumb.jpg" alt="Video 4" onclick="openVideoModal('https://www.youtube.com/embed/-sTBVntYZiw')">
-      <img src="multimedia/video5-thumb.jpg" alt="Video 5" onclick="openVideoModal('https://www.youtube.com/embed/0QFPH5KUd64')">
-      <img src="multimedia/video6-thumb.jpg" alt="Video 6" onclick="openVideoModal('https://www.youtube.com/embed/DPNFMINi_Lw')">
-      <img src="multimedia/video7-thumb.jpg" alt="Video 7" onclick="openVideoModal('https://www.youtube.com/embed/8psGr0zyl8o')">
-      <img src="multimedia/video8-thumb.jpg" alt="Video 8" onclick="openVideoModal('https://www.youtube.com/embed/75yDB-VupY4')">
-      <img src="multimedia/video9-thumb.jpg" alt="Video 9" onclick="openVideoModal('https://www.youtube.com/embed/PzMr102rF0M')">
-      <img src="multimedia/video10-thumb.jpg" alt="Video 10" onclick="openVideoModal('https://www.youtube.com/embed/jwJQq2HzWL4')">
-      <img src="multimedia/video11-thumb.jpg" alt="Video 11" onclick="openVideoModal('https://www.youtube.com/embed/hNp9rSM8dNA')">
-      <img src="multimedia/video12-thumb.jpg" alt="Video 12" onclick="openVideoModal('https://www.youtube.com/embed/vP7gcJx7eJI')">
+    <h3 class="fade-in" style="color: #004080; margin-top: 40px;">Vídeos de prueba</h3>
+    <div class="galeria fade-in">
+      <img class="video-thumb" src="multimedia/video1-thumb.jpg" alt="video 1" onclick="openVideoModal('https://www.youtube.com/embed/_x2B9feLR_M')">
+      <img class="video-thumb" src="multimedia/video2-thumb.jpg" alt="video 2" onclick="openVideoModal('https://www.youtube.com/embed/tc2GudUJOqM')">
+      <img class="video-thumb" src="multimedia/video3-thumb.jpg" alt="video 3" onclick="openVideoModal('https://www.youtube.com/embed/H1WOykaLp3E')">
+      <img class="video-thumb" src="multimedia/video4-thumb.jpg" alt="video 4" onclick="openVideoModal('https://www.youtube.com/embed/-sTBVntYZiw')">
+      <img class="video-thumb" src="multimedia/video5-thumb.jpg" alt="video 5" onclick="openVideoModal('https://www.youtube.com/embed/0QFPH5KUd64')">
+      <img class="video-thumb" src="multimedia/video6-thumb.jpg" alt="video 6" onclick="openVideoModal('https://www.youtube.com/embed/DPNFMINi_Lw')">
+      <img class="video-thumb" src="multimedia/video7-thumb.jpg" alt="video 7" onclick="openVideoModal('https://www.youtube.com/embed/8psGr0zyl8o')">
+      <img class="video-thumb" src="multimedia/video8-thumb.jpg" alt="video 8" onclick="openVideoModal('https://www.youtube.com/embed/75yDB-VupY4')">
+      <img class="video-thumb" src="multimedia/video9-thumb.jpg" alt="video 9" onclick="openVideoModal('https://www.youtube.com/embed/PzMr102rF0M')">
+      <img class="video-thumb" src="multimedia/video10-thumb.jpg" alt="video 10" onclick="openVideoModal('https://www.youtube.com/embed/jwJQq2HzWL4')">
+      <img class="video-thumb" src="multimedia/video11-thumb.jpg" alt="video 11" onclick="openVideoModal('https://www.youtube.com/embed/hNp9rSM8dNA')">
+      <img class="video-thumb" src="multimedia/video12-thumb.jpg" alt="video 12" onclick="openVideoModal('https://www.youtube.com/embed/vP7gcJx7eJI')">
     </div>
   </main>
 
@@ -79,33 +181,50 @@
   </footer>
 
   <!-- Modales -->
-  <div id="imageModal" class="modal" onclick="closeModal()">
-    <span class="close">&times;</span>
-    <img id="modalImage" class="modal-content">
+  <div id="imageModal" class="modal" onclick="closeModal(event)">
+    <img id="modalImg" class="modal-content" src="">
+  </div>
+  <div id="videoModal" class="modal" onclick="closeModal(event)">
+    <iframe id="modalVideo" class="modal-content" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
 
-  <div id="videoModal" class="modal" onclick="closeModal()">
-    <span class="close">&times;</span>
-    <iframe id="modalVideo" class="modal-content" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  </div>
-
+  <!-- Script de animación -->
   <script>
-    function openImageModal(src) {
-      document.getElementById('imageModal').style.display = 'block';
-      document.getElementById('modalImage').src = src;
+    function openImageModal(imgElement) {
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImg");
+      modal.style.display = "block";
+      modalImg.src = imgElement.src;
     }
 
-    function openVideoModal(youtubeUrl) {
-      document.getElementById('videoModal').style.display = 'block';
-      document.getElementById('modalVideo').src = youtubeUrl;
+    function openVideoModal(url) {
+      const modal = document.getElementById("videoModal");
+      const iframe = document.getElementById("modalVideo");
+      modal.style.display = "block";
+      iframe.src = url;
     }
 
-    function closeModal() {
-      document.getElementById('imageModal').style.display = 'none';
-      document.getElementById('modalImage').src = '';
-      document.getElementById('videoModal').style.display = 'none';
-      document.getElementById('modalVideo').src = '';
+    function closeModal(e) {
+      if (e.target.classList.contains("modal")) {
+        document.getElementById("imageModal").style.display = "none";
+        document.getElementById("videoModal").style.display = "none";
+        document.getElementById("modalImg").src = "";
+        document.getElementById("modalVideo").src = "";
+      }
     }
+
+    // Intersection Observer para animaciones
+    const elements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('appear');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    elements.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
