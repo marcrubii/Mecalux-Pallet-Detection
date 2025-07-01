@@ -4,6 +4,59 @@
   <meta charset="UTF-8">
   <title>Demo - Mecalux Pallet Detection</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    main {
+      background-color: #f9f9f9;
+      max-width: 85%;
+      margin: 60px auto 40px auto;
+      padding: 60px 60px;
+      border-radius: 12px;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .appear {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .subrayado-animado {
+      display: inline-block;
+      position: relative;
+    }
+
+    .subrayado-animado::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #004080;
+      animation: expandSubrayado 1s ease-out;
+    }
+
+    @keyframes expandSubrayado {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    a:hover {
+      transform: scale(1.03);
+      transition: transform 0.3s ease;
+    }
+  </style>
 </head>
 <body>
 
@@ -17,7 +70,12 @@
           <img src="upc-logo.png" alt="Logo UPC" class="logo">
         </a>
       </div>
-      <h1 class="header-title">Mecalux Pallet Detection</h1>
+      <div>
+        <h1 class="header-title" style="margin-bottom: 2px;">Mecalux Pallet Detection</h1>
+        <p style="font-style: italic; color: white; font-size: 0.8em; margin: 0;">
+          Sistema automático para la inspección visual de palets y mercancías en tiempo real
+        </p>
+      </div>
     </div>
 
     <nav>
@@ -30,12 +88,12 @@
   </header>
 
   <main>
-    <h2 style="text-align: center;">Prueba el modelo tú mismo</h2>
-    <p style="text-align: center;">
+    <h2 class="fade-in subrayado-animado" style="text-align: center;">Prueba el modelo tú mismo</h2>
+    <p class="fade-in" style="text-align: center;">
       Puedes acceder a la versión web del modelo a través del siguiente enlace:
     </p>
 
-    <div style="text-align: center; margin-top: 20px;">
+    <div class="fade-in" style="text-align: center; margin-top: 20px;">
       <a href="https://huggingface.co/spaces/marcrubii/MecaluxPalletDetection"
          target="_blank"
          style="display: inline-block; padding: 15px 30px; background-color: #007bff; color: white; text-decoration: none; font-size: 1.1em; border-radius: 8px;">
@@ -43,20 +101,22 @@
       </a>
     </div>
 
-    <p style="margin-top: 30px; font-size: 0.95em; color: #555; text-align: center;">
+    <p class="fade-in" style="margin-top: 30px; font-size: 0.95em; color: #555; text-align: center; background-color: #fff8e1; padding: 15px; border-left: 5px solid #ffa000;">
       Recuerda que Hugging Face es un entorno gratuito, por lo que utilizará <strong>CPU</strong>. Las predicciones, especialmente en vídeo, pueden tardar más.<br>
       Además, el modelo no es perfecto y puede fallar en imágenes con mala calidad o paquetes mal centrados. Ha sido diseñado para entornos logísticos controlados.
     </p>
 
     <hr style="margin: 50px 0;">
 
-    <section style="text-align: center;">
-      <h2>¡Implementa el modelo tú mismo!</h2>
+    <section class="fade-in" style="text-align: center;">
+      <h2 class="subrayado-animado">¡Implementa el modelo tú mismo!</h2>
       <p>Puedes probar el modelo en Google Colab con tus propias imágenes. A continuación puedes descargar los archivos necesarios:</p>
 
-      <div style="max-width: 800px; margin: 0 auto; text-align: left; font-size: 0.95em; background-color: #f8f8f8; padding: 20px; border-radius: 10px; border: 1px solid #ddd;">
-        <p><strong>best.pt</strong>: archivo con los pesos del modelo entrenado.</p>
-        <p><strong>data.yaml</strong>: archivo de configuración con las clases del dataset.</p>
+      <div style="max-width: 800px; margin: 0 auto; text-align: left; font-size: 0.95em; background-color: #e6f0fa; padding: 20px; border-radius: 10px; border: 1px solid #004080;">
+        <p><strong style="color: #004080;">best.pt</strong>: archivo con los pesos del modelo entrenado.</p>
+        <p><strong style="color: #004080;">data.yaml</strong>: archivo de configuración con las clases del dataset.</p>
+        <p><strong style="color: #004080;">dataset</strong>: Todas las imágenes que se han usado para entrenar el modelo, incluido <em>data augmentation</em>.</p>
+        <p><strong style="color: #004080;">labels</strong>: Archivos de texto que indican las ubicaciones y clases de los objetos anotados en cada imagen.</p>
       </div>
 
       <div style="margin: 25px 0;">
