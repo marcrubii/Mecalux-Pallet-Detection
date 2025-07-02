@@ -43,11 +43,11 @@
       background-color: #f9f9f9;
       max-width: 85%;
       margin: 60px auto 40px auto;
-      padding: 60px 60px;
+      padding: 40px 40px; /* reducido */
       border-radius: 12px;
       display: flex;
       flex-wrap: wrap;
-      gap: 40px;
+      gap: 20px; /* reducido */
       align-items: center;
       justify-content: space-between;
     }
@@ -70,6 +70,54 @@
       object-fit: cover;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 30px;
+    }
+
+    .header-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo-column {
+      display: flex;
+      gap: 20px;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    nav {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #cce6ff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #555;
+      margin-top: 40px;
     }
   </style>
 </head>
