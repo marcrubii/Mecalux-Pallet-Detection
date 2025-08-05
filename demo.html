@@ -113,10 +113,9 @@
       <p>Puedes probar el modelo en Google Colab con tus propias imágenes. A continuación puedes descargar los archivos necesarios:</p>
 
       <div style="max-width: 800px; margin: 0 auto; text-align: left; font-size: 0.95em; background-color: #e6f0fa; padding: 20px; border-radius: 10px; border: 1px solid #004080;">
-        <p><strong style="color: #004080;">best.pt</strong>: archivo con los pesos del modelo entrenado.</p>
+        <p><strong style="color: #004080;">best.pt</strong>: archivo con los mejores pesos del modelo entrenado.</p>
         <p><strong style="color: #004080;">data.yaml</strong>: archivo de configuración con las clases del dataset.</p>
-        <p><strong style="color: #004080;">dataset</strong>: Todas las imágenes que se han usado para entrenar el modelo, incluido <em>data augmentation</em>.</p>
-        <p><strong style="color: #004080;">labels</strong>: Archivos de texto que indican las ubicaciones y clases de los objetos anotados en cada imagen.</p>
+        <p><strong style="color: #004080;">dataset</strong>: Todas las imágenes junto con sus labels que se han usado para entrenar el modelo.</p>
       </div>
 
       <div style="margin: 25px 0;">
@@ -155,7 +154,7 @@ for ruta in glob.glob('/content/imagenes_nuevas/**/*.*', recursive=True):
         except Exception:
             pass
 
-# Autolabel con best.pt
+# Autolabel con best.pt, utilizamos el archivo para que pongan las labels de las predicciones
 !yolo detect predict model=best.pt \
   source=/content/imagenes_nuevas \
   save_txt \
@@ -163,7 +162,7 @@ for ruta in glob.glob('/content/imagenes_nuevas/**/*.*', recursive=True):
   project=/content/predicciones \
   name=resultados
 
-# Filtrar por confianza ≥ 0.7
+# Filtrar por confianza ≥ 0.7 (puedes variar el parametro de confianza, cuanta más confianza, es mas probable que prediga menos clases.
 ruta_labels = '/content/predicciones/resultados/labels'
 filtradas = '/content/predicciones_filtradas'
 if os.path.exists(filtradas): shutil.rmtree(filtradas)
