@@ -82,13 +82,6 @@ El sistema puede utilizarse para:
 
 ---
 
-## Demo
-Se ha desarrollado una página web donde se presenta el proyecto en detalle y es posible probar el modelo con imágenes o vídeos propios:
-
-https://marcrubii.github.io/Mecalux-Pallet-Detection/
-
----
-
 ## Conclusiones
 Este proyecto demuestra cómo las técnicas de **Deep Learning y detección de objetos** pueden aplicarse eficazmente a problemas reales de la industria logística. La combinación de un dataset propio, una arquitectura robusta y un proceso de entrenamiento controlado permite construir un sistema funcional y adaptable a distintos escenarios de inspección automática.
 
