@@ -2,135 +2,1036 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Demo - Mecalux Pallet Detection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Prueba online e implementación del proyecto Mecalux Pallet Detection mediante Hugging Face y Google Colab.">
+  <title>Demo | Mecalux Pallet Detection</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    main {
-      background-color: #f9f9f9;
-      max-width: 85%;
-      margin: 60px auto 40px auto;
-      padding: 60px 60px;
+    :root {
+      --mecalux-blue: #004b8d;
+      --mecalux-blue-dark: #062b4f;
+      --mecalux-blue-soft: #eaf4ff;
+      --accent: #19a7ce;
+      --ink: #14213d;
+      --muted: #5f6f89;
+      --line: #dce7f3;
+      --bg: #f4f8fc;
+      --white: #ffffff;
+      --warning-bg: #fff6df;
+      --warning-line: #ffbf47;
+      --shadow: 0 18px 45px rgba(6, 43, 79, 0.13);
+      --shadow-soft: 0 10px 28px rgba(6, 43, 79, 0.08);
+      --radius-lg: 26px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(25, 167, 206, 0.15), transparent 32rem),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 45%, #ffffff 100%);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; }
+
+    .site-header {
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        linear-gradient(135deg, rgba(0, 75, 141, 0.98), rgba(6, 43, 79, 0.98));
+      padding: 28px 6vw 72px;
+    }
+
+    .site-header::before,
+    .site-header::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      pointer-events: none;
+    }
+
+    .site-header::before {
+      width: 380px;
+      height: 380px;
+      right: -120px;
+      top: -160px;
+    }
+
+    .site-header::after {
+      width: 240px;
+      height: 240px;
+      left: -90px;
+      bottom: -120px;
+    }
+
+    .topbar,
+    .hero {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand-strip {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .logo-card {
+      width: 156px;
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
+    }
+
+    .logo-card img {
+      max-height: 48px;
+      object-fit: contain;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-weight: 650;
+      font-size: 0.95rem;
+    }
+
+    .main-nav a {
+      padding: 10px 13px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.88);
+      transition: 0.22s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a[aria-current="page"] {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      align-items: center;
+      gap: 54px;
+      padding-top: 76px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: rgba(255, 255, 255, 0.94);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 0.88rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #6ee7ff;
+      box-shadow: 0 0 0 5px rgba(110, 231, 255, 0.16);
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 760px;
+      color: var(--white);
+      font-size: clamp(2.7rem, 5vw, 5.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: #8de8ff;
+    }
+
+    .hero-lead {
+      margin: 24px 0 0;
+      max-width: 720px;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: 0.22s ease;
+    }
+
+    .btn-primary {
+      color: var(--mecalux-blue-dark);
+      background: var(--white);
+      box-shadow: 0 13px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .btn-secondary {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.16);
+    }
+
+    .hero-panel {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(12px);
+    }
+
+    .demo-flow {
+      display: grid;
+      gap: 14px;
+      padding: clamp(22px, 4vw, 34px);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top right, rgba(141, 232, 255, 0.26), transparent 17rem),
+        linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+      color: var(--ink);
+    }
+
+    .flow-card {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 18px rgba(6, 43, 79, 0.05);
+    }
+
+    .flow-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--mecalux-blue), var(--accent));
+      color: var(--white);
+      font-weight: 900;
+      font-size: 1.05rem;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.22);
+    }
+
+    .flow-card strong {
+      display: block;
+      color: var(--mecalux-blue-dark);
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+
+    .flow-card p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .page-shell {
+      width: min(1180px, calc(100% - 36px));
+      margin: -44px auto 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+
+    .overview-card {
+      padding: 24px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      transition: 0.25s ease;
+    }
+
+    .overview-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .overview-card small {
+      display: block;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.76rem;
+    }
+
+    .overview-card strong {
+      display: block;
+      margin: 8px 0 6px;
+      color: var(--mecalux-blue);
+      font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .overview-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.96rem;
+    }
+
+    .section {
+      padding: clamp(54px, 8vw, 82px) 0;
+    }
+
+    .section-card {
+      padding: clamp(28px, 5vw, 46px);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--mecalux-blue);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(25, 167, 206, 0.14);
+    }
+
+    h2 {
+      margin: 10px 0 0;
+      color: var(--mecalux-blue-dark);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.06;
+      letter-spacing: -0.05em;
+    }
+
+    .section-intro {
+      max-width: 620px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .demo-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .cta-box {
+      padding: 30px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top right, rgba(141, 232, 255, 0.24), transparent 18rem),
+        linear-gradient(135deg, #062b4f, #004b8d);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box h3,
+    .resource-box h3,
+    .steps-box h3,
+    .code-box h3 {
+      margin: 0 0 10px;
+      font-size: clamp(1.5rem, 2.8vw, 2rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .cta-box p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.84);
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .mini-notes {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .mini-note {
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .mini-note strong {
+      display: block;
+      font-size: 0.98rem;
+      margin-bottom: 4px;
+    }
+
+    .mini-note span {
+      display: block;
+      color: rgba(255,255,255,0.78);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .status-column {
+      display: grid;
+      gap: 16px;
+    }
+
+    .status-card {
+      padding: 20px;
+      border-radius: 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 20px rgba(6, 43, 79, 0.06);
+    }
+
+    .status-card small {
+      display: block;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 850;
+      font-size: 0.72rem;
+      margin-bottom: 8px;
+    }
+
+    .status-card strong {
+      display: block;
+      color: var(--mecalux-blue-dark);
+      font-size: 1.18rem;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .status-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .warning-note {
+      margin-top: 24px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: var(--warning-bg);
+      border-left: 5px solid var(--warning-line);
+      color: #705300;
+    }
+
+    .warning-note strong { color: #3f3000; }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .resource-box {
+      padding: 22px;
+      border-radius: 22px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 18px rgba(6, 43, 79, 0.05);
+      transition: 0.24s ease;
+    }
+
+    .resource-box:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .resource-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 58px;
+      min-height: 34px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--mecalux-blue-soft);
+      color: var(--mecalux-blue);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .resource-box p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .download-wrap {
+      margin-top: 26px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 56px;
+      padding: 15px 32px;
+      border-radius: 999px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--accent), var(--mecalux-blue));
+      box-shadow: 0 15px 28px rgba(0, 75, 141, 0.22);
+      font-weight: 850;
+      transition: 0.24s ease;
+    }
+
+    .download-button:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 18px 34px rgba(0, 75, 141, 0.26);
+    }
+
+    .steps-box,
+    .code-box {
+      margin-top: 24px;
+      padding: 26px;
+      border-radius: 22px;
+      background: #f9fcff;
+      border: 1px solid var(--line);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .step-card {
+      position: relative;
+      padding: 20px;
+      border-radius: 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 18px rgba(6, 43, 79, 0.04);
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
       border-radius: 12px;
+      background: linear-gradient(135deg, var(--mecalux-blue), var(--accent));
+      color: var(--white);
+      font-weight: 900;
     }
 
-    .fade-in {
+    .step-card strong {
+      display: block;
+      color: var(--mecalux-blue-dark);
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .step-card p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.45;
+    }
+
+    details.code-details {
+      margin-top: 18px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 24px rgba(6,43,79,0.05);
+    }
+
+    details.code-details summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 22px;
+      font-weight: 850;
+      color: var(--mecalux-blue-dark);
+      background: linear-gradient(180deg, #ffffff 0%, #f6fbff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    details.code-details summary::-webkit-details-marker { display: none; }
+
+    .summary-badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--mecalux-blue-soft);
+      color: var(--mecalux-blue);
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .code-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #f8fbff;
+    }
+
+    .code-toolbar span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .copy-button {
+      border: 0;
+      border-radius: 12px;
+      padding: 10px 14px;
+      cursor: pointer;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--mecalux-blue), var(--accent));
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    .copy-button:hover { transform: translateY(-1px); }
+
+    pre {
+      margin: 0;
+      padding: 22px;
+      overflow-x: auto;
+      background: #071525;
+      color: #dceeff;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      tab-size: 2;
+    }
+
+    code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+
+    .final-cta {
+      text-align: center;
+      padding: clamp(34px, 6vw, 58px);
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at top right, rgba(141, 232, 255, 0.28), transparent 23rem),
+        linear-gradient(135deg, #062b4f, #004b8d);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .final-cta .kicker {
+      color: #8de8ff;
+      justify-content: center;
+    }
+
+    .final-cta h2 { color: var(--white); }
+
+    .final-cta p {
+      max-width: 740px;
+      margin: 18px auto 0;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .site-footer {
+      margin-top: 70px;
+      padding: 30px 6vw;
+      text-align: center;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.66);
+      border-top: 1px solid var(--line);
+    }
+
+    .reveal {
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.8s ease-out forwards;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
-    .appear {
-      opacity: 1 !important;
-      transform: none !important;
+    .reveal.appear {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: none;
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+
+    @media (max-width: 980px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .main-nav { justify-content: flex-start; }
+      .hero,
+      .demo-panel { grid-template-columns: 1fr; }
+      .overview-grid,
+      .resources-grid,
+      .steps-grid { grid-template-columns: 1fr; }
+      .section-header {
+        align-items: flex-start;
+        flex-direction: column;
       }
     }
 
-    .subrayado-animado {
-      display: inline-block;
-      position: relative;
-    }
+    @media (max-width: 620px) {
+      .site-header { padding: 22px 18px 58px; }
+      .brand-strip { width: 100%; }
+      .logo-card {
+        width: calc(50% - 7px);
+        min-height: 58px;
+      }
 
-    .subrayado-animado::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 3px;
-      background-color: #004080;
-      animation: expandSubrayado 1s ease-out;
-    }
+      .hero h1 { font-size: clamp(2.45rem, 15vw, 4rem); }
+      .hero-actions,
+      .cta-actions,
+      .download-wrap {
+        align-items: stretch;
+        flex-direction: column;
+      }
 
-    @keyframes expandSubrayado {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    a:hover {
-      transform: scale(1.03);
-      transition: transform 0.3s ease;
+      .btn,
+      .download-button { width: 100%; }
+      .page-shell { width: min(100% - 24px, 1180px); }
+      .section-card,
+      .cta-box,
+      .steps-box,
+      .code-box { padding: 24px 18px; }
+      .mini-notes { grid-template-columns: 1fr; }
+      .code-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <div class="topbar">
+      <div class="brand-strip" aria-label="Entidades vinculadas al proyecto">
+        <a class="logo-card" href="https://www.mecalux.es" target="_blank" rel="noopener noreferrer" aria-label="Abrir web de Mecalux">
+          <img src="mecalux-logo.png" alt="Logo de Mecalux">
+        </a>
+        <a class="logo-card" href="https://www.upc.edu" target="_blank" rel="noopener noreferrer" aria-label="Abrir web de la UPC">
+          <img src="upc-logo.png" alt="Logo de la Universitat Politècnica de Catalunya">
+        </a>
+      </div>
 
-  <header>
-    <div class="header-flex">
-      <div class="logo-column">
-        <a href="https://www.mecalux.es" target="_blank">
-          <img src="mecalux-logo.png" alt="Logo Mecalux" class="logo">
-        </a>
-        <a href="https://www.upc.edu" target="_blank">
-          <img src="upc-logo.png" alt="Logo UPC" class="logo">
-        </a>
-      </div>
-      <div>
-        <h1 class="header-title" style="margin-bottom: 2px;">Mecalux Pallet Detection</h1>
-        <p style="font-style: italic; color: white; font-size: 0.8em; margin: 0;">
-          Sistema automático para la inspección visual de palets y mercancías en tiempo real
-        </p>
-      </div>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Problema</a>
+        <a href="resultados.html">Resultados</a>
+        <a href="demo.html" aria-current="page">Demo</a>
+        <a href="modelo.html">Modelo</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
     </div>
 
-    <nav>
-      <a href="index.html">¿Qué estamos solucionando?</a>
-      <a href="resultados.html">Resultados</a>
-      <a href="demo.html">Pruébalo tú mismo</a>
-      <a href="modelo.html">Modelo</a>
-      <a href="contacto.html">Contacto</a>
-    </nav>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="reveal">
+        <p class="eyebrow">Entorno interactivo del proyecto</p>
+        <h1 id="hero-title">Prueba el modelo <span>en directo</span></h1>
+        <p class="hero-lead">
+          Accede a la demo online de Mecalux Pallet Detection o implementa el modelo por tu cuenta con los archivos y el flujo preparado para Google Colab.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://huggingface.co/spaces/marcrubii/MecaluxPalletDetection" target="_blank" rel="noopener noreferrer">Abrir demo online</a>
+          <a class="btn btn-secondary" href="#implementacion">Implementarlo yo mismo</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel reveal reveal-delay-1" aria-label="Resumen de funcionamiento">
+        <div class="demo-flow">
+          <div class="flow-card">
+            <div class="flow-icon">01</div>
+            <div>
+              <strong>Sube una imagen o un vídeo</strong>
+              <p>Utiliza la demo web para cargar ejemplos propios y lanzar una inferencia rápida.</p>
+            </div>
+          </div>
+          <div class="flow-card">
+            <div class="flow-icon">02</div>
+            <div>
+              <strong>Ejecuta la detección</strong>
+              <p>El sistema analiza embalaje, estado del palet y consistencia dimensional.</p>
+            </div>
+          </div>
+          <div class="flow-card">
+            <div class="flow-icon">03</div>
+            <div>
+              <strong>Revisa el resultado</strong>
+              <p>Obtén predicciones visuales y utilízalas como apoyo a la decisión en un contexto logístico.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
   </header>
 
-  <main>
-    <h2 class="fade-in subrayado-animado" style="text-align: center;">Prueba el modelo tú mismo</h2>
-    <p class="fade-in" style="text-align: center;">
-      Puedes acceder a la versión web del modelo a través del siguiente enlace:
-    </p>
+  <main class="page-shell">
+    <section class="overview-grid" aria-label="Resumen de accesos">
+      <article class="overview-card reveal">
+        <small>Acceso rápido</small>
+        <strong>Demo online</strong>
+        <p>Versión web lista para probar el sistema sin instalación local.</p>
+      </article>
+      <article class="overview-card reveal reveal-delay-1">
+        <small>Uso avanzado</small>
+        <strong>Colab + archivos</strong>
+        <p>Descarga pesos, configuración y dataset para ejecutar tus propias pruebas.</p>
+      </article>
+      <article class="overview-card reveal reveal-delay-2">
+        <small>Entorno</small>
+        <strong>CPU gratuita</strong>
+        <p>La demo web corre en entorno gratuito, así que los tiempos pueden variar según la carga.</p>
+      </article>
+    </section>
 
-    <div class="fade-in" style="text-align: center; margin-top: 20px;">
-      <a href="https://huggingface.co/spaces/marcrubii/MecaluxPalletDetection"
-         target="_blank"
-         style="display: inline-block; padding: 15px 30px; background-color: #007bff; color: white; text-decoration: none; font-size: 1.1em; border-radius: 8px;">
-        ¡Sube tu imagen o vídeo y pruébalo aquí!
-      </a>
-    </div>
+    <section class="section" id="demo-online">
+      <div class="section-card reveal">
+        <div class="section-header">
+          <div>
+            <span class="kicker">Experiencia online</span>
+            <h2>Prueba el modelo tú mismo</h2>
+          </div>
+          <p class="section-intro">
+            Accede a la versión web del proyecto y realiza pruebas con tus propios inputs para visualizar el comportamiento del modelo en un entorno interactivo.
+          </p>
+        </div>
 
-    <p class="fade-in" style="margin-top: 30px; font-size: 0.95em; color: #555; text-align: center; background-color: #fff8e1; padding: 15px; border-left: 5px solid #ffa000;">
-      Recuerda que Hugging Face es un entorno gratuito, por lo que utilizará <strong>CPU</strong>. Las predicciones, especialmente en vídeo, pueden tardar más.<br>
-      Además, el modelo no es perfecto y puede fallar en imágenes con mala calidad o paquetes mal centrados. Ha sido diseñado para entornos logísticos controlados.
-    </p>
+        <div class="demo-panel">
+          <div class="cta-box">
+            <h3>Sube tu imagen o vídeo y lánzalo en un clic</h3>
+            <p>
+              La demo de Hugging Face permite experimentar directamente con el proyecto sin necesidad de instalar dependencias ni preparar un entorno local.
+            </p>
 
-    <hr style="margin: 50px 0;">
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="https://huggingface.co/spaces/marcrubii/MecaluxPalletDetection" target="_blank" rel="noopener noreferrer">Abrir demo en Hugging Face</a>
+              <a class="btn btn-secondary" href="#implementacion">Ver implementación en Colab</a>
+            </div>
 
-    <section class="fade-in" style="text-align: center;">
-      <h2 class="subrayado-animado">¡Implementa el modelo tú mismo!</h2>
-      <p>Puedes probar el modelo en Google Colab con tus propias imágenes. A continuación puedes descargar los archivos necesarios:</p>
+            <div class="mini-notes">
+              <div class="mini-note">
+                <strong>Sin instalación</strong>
+                <span>Ideal para enseñar el proyecto rápidamente en una evaluación o presentación.</span>
+              </div>
+              <div class="mini-note">
+                <strong>Enfoque demostrativo</strong>
+                <span>Pensado para validar el funcionamiento de forma visual y comprensible.</span>
+              </div>
+            </div>
+          </div>
 
-      <div style="max-width: 800px; margin: 0 auto; text-align: left; font-size: 0.95em; background-color: #e6f0fa; padding: 20px; border-radius: 10px; border: 1px solid #004080;">
-        <p><strong style="color: #004080;">best.pt</strong>: archivo con los mejores pesos del modelo entrenado.</p>
-        <p><strong style="color: #004080;">data.yaml</strong>: archivo de configuración con las clases del dataset.</p>
-        <p><strong style="color: #004080;">dataset</strong>: Todas las imágenes junto con sus labels que se han usado para entrenar el modelo.</p>
+          <div class="status-column">
+            <article class="status-card">
+              <small>Uso recomendado</small>
+              <strong>Sube casos representativos</strong>
+              <p>Las mejores pruebas se obtienen con imágenes centradas y escenas relativamente controladas.</p>
+            </article>
+            <article class="status-card">
+              <small>Tiempo de respuesta</small>
+              <strong>Puede variar</strong>
+              <p>En vídeo, la inferencia puede tardar más por ejecutarse en CPU y por la naturaleza del entorno gratuito.</p>
+            </article>
+            <article class="status-card">
+              <small>Resultado esperado</small>
+              <strong>Predicción visual asistida</strong>
+              <p>El modelo es una ayuda a la inspección, no una garantía absoluta. Su valor está en apoyar la revisión logística.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="warning-note">
+          <strong>Importante:</strong> Hugging Face funciona en un entorno gratuito, por lo que utilizará <strong>CPU</strong>. Las predicciones, especialmente en vídeo, pueden tardar más. Además, el modelo puede fallar en imágenes de baja calidad o con paquetes mal centrados, ya que ha sido diseñado para escenarios logísticos relativamente controlados.
+        </div>
       </div>
+    </section>
 
-      <div style="margin: 25px 0;">
-        <a href="https://drive.google.com/drive/folders/1yK_s-otUTLbObeL3SIaq0vzXZ0NGkkfu?usp=drive_link" 
-           target="_blank"
-           style="display: inline-block; padding: 15px 35px; background-color: #17a2b8; color: white; text-decoration: none; font-size: 1.1em; border-radius: 8px;">
-          Descargar archivos del modelo
-        </a>
-      </div>
+    <section class="section" id="implementacion">
+      <div class="section-card reveal">
+        <div class="section-header">
+          <div>
+            <span class="kicker">Implementación propia</span>
+            <h2>Implementa el modelo tú mismo</h2>
+          </div>
+          <p class="section-intro">
+            Si quieres reproducir la prueba, puedes descargar los recursos principales y ejecutar el pipeline directamente en Google Colab con tus propias imágenes.
+          </p>
+        </div>
 
-      <details style="max-width: 900px; margin: 0 auto; text-align: left;">
-        <summary style="cursor: pointer; font-size: 1.1em; font-weight: bold; margin-bottom: 10px;">
-          Ver instrucciones y código para Google Colab
-        </summary>
-        <pre style="background: #f4f4f4; padding: 20px; border-radius: 8px; font-size: 0.85em; overflow-x: auto;"><code># Instalar ultralytics
+        <div class="resources-grid">
+          <article class="resource-box">
+            <span class="resource-tag">Pesos</span>
+            <h3>best.pt</h3>
+            <p>Archivo con los mejores pesos del modelo entrenado y listo para inferencia.</p>
+          </article>
+          <article class="resource-box">
+            <span class="resource-tag">Config</span>
+            <h3>data.yaml</h3>
+            <p>Archivo de configuración con la estructura de clases y parámetros básicos del dataset.</p>
+          </article>
+          <article class="resource-box">
+            <span class="resource-tag">Dataset</span>
+            <h3>Imágenes y labels</h3>
+            <p>Conjunto de datos utilizado para el entrenamiento, útil para reproducibilidad y validación.</p>
+          </article>
+        </div>
+
+        <div class="download-wrap">
+          <a class="download-button" href="https://drive.google.com/drive/folders/1yK_s-otUTLbObeL3SIaq0vzXZ0NGkkfu?usp=drive_link" target="_blank" rel="noopener noreferrer">
+            Descargar archivos del modelo
+          </a>
+        </div>
+
+        <div class="steps-box">
+          <h3>Flujo de uso en Google Colab</h3>
+          <p class="section-intro" style="max-width: 100%; margin-top: 8px;">
+            El proceso está pensado para que puedas ejecutar inferencias, generar labels automáticas y descargar el resultado filtrado sin complicaciones.
+          </p>
+          <div class="steps-grid">
+            <article class="step-card">
+              <div class="step-number">1</div>
+              <strong>Instala dependencias</strong>
+              <p>Instala Ultralytics y prepara el entorno de trabajo en Colab.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-number">2</div>
+              <strong>Sube archivos</strong>
+              <p>Carga tu ZIP de imágenes, junto con <code>best.pt</code> y <code>data.yaml</code>.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-number">3</div>
+              <strong>Ejecuta la detección</strong>
+              <p>Lanza <code>yolo detect predict</code> y genera labels con nivel de confianza.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-number">4</div>
+              <strong>Filtra y descarga</strong>
+              <p>Conserva predicciones por encima del umbral y descarga el ZIP resultante.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="code-box">
+          <h3>Instrucciones y código para Google Colab</h3>
+          <p class="section-intro" style="max-width: 100%; margin-top: 8px;">
+            He mantenido tu flujo original, pero presentado de forma más limpia para que resulte más profesional y fácil de seguir.
+          </p>
+
+          <details class="code-details" open>
+            <summary>
+              <span>Ver script completo de ejecución</span>
+              <span class="summary-badge">Colab</span>
+            </summary>
+
+            <div class="code-toolbar">
+              <span>Puedes copiar el script completo y pegarlo directamente en Google Colab.</span>
+              <button class="copy-button" type="button" id="copyCodeButton">Copiar código</button>
+            </div>
+
+            <pre><code id="colabCode"># Instalar ultralytics
 !pip install -q ultralytics
 
 # Subir imagenes_nuevas.zip (imágenes que quieras predecir), best.pt y data.yaml
@@ -162,36 +1063,84 @@ for ruta in glob.glob('/content/imagenes_nuevas/**/*.*', recursive=True):
   project=/content/predicciones \
   name=resultados
 
-# Filtrar por confianza ≥ 0.7 (puedes variar el parametro de confianza, cuanta más confianza, es mas probable que prediga menos clases.
+# Filtrar por confianza ≥ 0.7 (puedes variar el parámetro de confianza; a mayor confianza,
+# es más probable que prediga menos clases)
 ruta_labels = '/content/predicciones/resultados/labels'
 filtradas = '/content/predicciones_filtradas'
-if os.path.exists(filtradas): shutil.rmtree(filtradas)
+if os.path.exists(filtradas):
+    shutil.rmtree(filtradas)
 os.makedirs(filtradas, exist_ok=True)
 
 for archivo in os.listdir(ruta_labels):
-    if archivo.endswith(".txt"):
+    if archivo.endswith('.txt'):
         ruta = os.path.join(ruta_labels, archivo)
         lineas_filtradas = []
         with open(ruta, 'r') as f:
             for linea in f:
                 partes = linea.strip().split()
                 if len(partes) > 5 and float(partes[-1]) >= 0.7:
-                    lineas_filtradas.append(" ".join(partes[:-1]))
+                    lineas_filtradas.append(' '.join(partes[:-1]))
         if lineas_filtradas:
             with open(os.path.join(filtradas, archivo), 'w') as f:
-                f.write("\n".join(lineas_filtradas))
+                f.write('\n'.join(lineas_filtradas))
 
 # Comprimir y descargar
 !zip -qr /content/labels_filtradas.zip /content/predicciones_filtradas
 from google.colab import files
 files.download('/content/labels_filtradas.zip')</code></pre>
-      </details>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="final-cta reveal">
+        <span class="kicker">Siguiente paso</span>
+        <h2>Una demo sólida también comunica valor de producto</h2>
+        <p>
+          Esta página está pensada para que cualquier evaluador entienda rápido cómo probar el sistema, cómo reproducirlo y qué puede esperar del modelo en un contexto real.
+        </p>
+        <div class="hero-actions" style="justify-content: center;">
+          <a class="btn btn-primary" href="https://huggingface.co/spaces/marcrubii/MecaluxPalletDetection" target="_blank" rel="noopener noreferrer">Ir a la demo</a>
+          <a class="btn btn-secondary" href="modelo.html">Ver detalles del modelo</a>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     &copy; 2025 Marc Rubí · Mecalux Pallet Detection
   </footer>
 
+  <script>
+    const elements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('appear');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    elements.forEach(el => observer.observe(el));
+
+    const copyButton = document.getElementById('copyCodeButton');
+    const codeBlock = document.getElementById('colabCode');
+
+    if (copyButton && codeBlock) {
+      copyButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(codeBlock.textContent);
+          const previousText = copyButton.textContent;
+          copyButton.textContent = 'Copiado';
+          setTimeout(() => copyButton.textContent = previousText, 1600);
+        } catch (error) {
+          copyButton.textContent = 'No se pudo copiar';
+          setTimeout(() => copyButton.textContent = 'Copiar código', 1800);
+        }
+      });
+    }
+  </script>
 </body>
 </html>
