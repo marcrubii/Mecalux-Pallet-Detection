@@ -155,7 +155,7 @@
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+      grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
       align-items: center;
       gap: 54px;
       padding-top: 76px;
@@ -189,9 +189,9 @@
       margin: 0;
       max-width: 850px;
       color: var(--white);
-      font-size: clamp(2.4rem, 4.6vw, 5.3rem);
+      font-size: clamp(2.55rem, 5vw, 5.7rem);
       line-height: 0.98;
-      letter-spacing: -0.055em;
+      letter-spacing: -0.06em;
     }
 
     .hero h1 span {
@@ -202,134 +202,126 @@
     .hero-lead {
       margin: 26px 0 0;
       max-width: 760px;
-      color: rgba(255, 255, 255, 0.82);
-      font-size: clamp(1.02rem, 1.5vw, 1.22rem);
+      color: rgba(255, 255, 255, 0.86);
+      font-size: clamp(1.05rem, 1.8vw, 1.28rem);
     }
 
     .hero-actions {
       display: flex;
+      align-items: center;
       gap: 14px;
       flex-wrap: wrap;
-      margin-top: 32px;
+      margin-top: 34px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 9px;
       min-height: 48px;
-      padding: 12px 20px;
+      padding: 13px 20px;
       border-radius: 999px;
-      font-weight: 750;
+      font-weight: 800;
+      border: 1px solid transparent;
       transition: 0.22s ease;
     }
 
     .btn-primary {
       color: var(--mecalux-blue-dark);
-      background: #8de8ff;
-      box-shadow: 0 12px 30px rgba(141, 232, 255, 0.22);
+      background: var(--white);
+      box-shadow: 0 13px 28px rgba(0, 0, 0, 0.18);
     }
 
     .btn-secondary {
       color: var(--white);
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.28);
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.16);
     }
 
     .hero-panel {
-      position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      padding: 18px;
       background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
-      padding: 24px;
-      overflow: hidden;
-    }
-
-    .hero-panel::after {
-      content: "";
-      position: absolute;
-      inset: auto -35% -40% 15%;
-      height: 190px;
-      background: radial-gradient(circle, rgba(141, 232, 255, 0.35), transparent 65%);
-      pointer-events: none;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(12px);
     }
 
     .results-preview {
-      position: relative;
-      z-index: 1;
+      min-height: 410px;
       display: grid;
-      gap: 14px;
-    }
-
-    .preview-main {
-      padding: 22px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.96);
-      color: var(--mecalux-blue-dark);
-      box-shadow: var(--shadow-soft);
+      align-content: center;
+      gap: 18px;
+      padding: clamp(22px, 4vw, 34px);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top right, rgba(141, 232, 255, 0.26), transparent 17rem),
+        linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+      color: var(--ink);
     }
 
     .preview-main small {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
       color: var(--muted);
-      font-weight: 800;
+      font-weight: 900;
+      letter-spacing: 0.11em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.72rem;
     }
 
     .preview-main strong {
       display: block;
-      font-size: clamp(1.45rem, 2.4vw, 2rem);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+      color: var(--mecalux-blue-dark);
+      font-size: clamp(2rem, 3.6vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
     }
 
     .preview-main p {
-      margin: 12px 0 0;
+      margin: 20px 0 0;
       color: var(--muted);
+      font-size: 1.04rem;
     }
 
     .mini-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 12px;
+      margin-top: 10px;
     }
 
     .mini-card {
-      padding: 16px 12px;
-      border-radius: 18px;
+      padding: 15px 12px;
       text-align: center;
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 18px rgba(6, 43, 79, 0.05);
     }
 
     .mini-card strong {
       display: block;
-      color: #8de8ff;
-      font-size: 1.55rem;
+      color: var(--mecalux-blue);
+      font-size: 1.65rem;
       line-height: 1;
     }
 
     .mini-card span {
-      display: block;
-      margin-top: 8px;
-      color: rgba(255, 255, 255, 0.78);
-      font-size: 0.78rem;
-      font-weight: 700;
+      color: var(--muted);
+      font-weight: 750;
+      font-size: 0.83rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .page-shell {
-      width: min(1180px, calc(100% - 32px));
+      width: min(1180px, calc(100% - 36px));
       margin: -44px auto 0;
       position: relative;
       z-index: 2;
@@ -339,13 +331,13 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
-      margin-bottom: 22px;
+      margin-bottom: 34px;
     }
 
     .metric-card {
       padding: 24px;
       border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.93);
+      background: rgba(255, 255, 255, 0.95);
       border: 1px solid var(--line);
       box-shadow: var(--shadow-soft);
       transition: 0.25s ease;
@@ -362,166 +354,122 @@
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      font-size: 0.72rem;
+      font-size: 0.76rem;
     }
 
     .metric-card strong {
       display: block;
-      margin: 6px 0 8px;
+      margin: 8px 0 6px;
       color: var(--mecalux-blue);
-      font-size: clamp(1.8rem, 3vw, 2.45rem);
-      letter-spacing: -0.05em;
+      font-size: clamp(1.45rem, 2.4vw, 2rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
     }
 
     .metric-card p {
       margin: 0;
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.45;
+      font-size: 0.96rem;
     }
 
-    .content-card {
-      overflow: hidden;
+    .section {
+      padding: clamp(54px, 8vw, 82px) 0;
+    }
+
+    .section-card {
+      padding: clamp(28px, 5vw, 46px);
       border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid var(--line);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-soft);
     }
 
-    section {
-      padding: clamp(42px, 6vw, 76px);
-    }
-
-    .section-heading {
-      max-width: 880px;
-      margin-bottom: 30px;
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 28px;
+      margin-bottom: 28px;
     }
 
     .kicker {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin: 0 0 12px;
       color: var(--mecalux-blue);
-      font-weight: 850;
-      text-transform: uppercase;
-      letter-spacing: 0.11em;
       font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
 
     .kicker::before {
       content: "";
-      width: 28px;
-      height: 2px;
-      border-radius: 999px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
       background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(25, 167, 206, 0.14);
     }
 
     h2 {
-      margin: 0;
+      margin: 10px 0 0;
       color: var(--mecalux-blue-dark);
-      font-size: clamp(2rem, 3.5vw, 3.3rem);
+      font-size: clamp(2rem, 4vw, 3rem);
       line-height: 1.06;
-      letter-spacing: -0.045em;
+      letter-spacing: -0.05em;
     }
 
-    h3 {
+    .section-intro {
+      max-width: 640px;
       margin: 0;
-      color: var(--mecalux-blue-dark);
-      font-size: clamp(1.3rem, 2.1vw, 1.8rem);
-      line-height: 1.2;
-      letter-spacing: -0.025em;
-    }
-
-    .section-heading p:not(.kicker),
-    .lead-text {
-      margin: 18px 0 0;
       color: var(--muted);
-      font-size: 1.05rem;
+      font-size: 1.02rem;
     }
 
-    .legend-panel {
-      display: grid;
-      grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .legend-summary {
-      padding: 28px;
-      border-radius: 24px;
-      background:
-        linear-gradient(145deg, rgba(0, 75, 141, 0.08), rgba(25, 167, 206, 0.08)),
-        var(--white);
-      border: 1px solid var(--line);
-    }
-
-    .legend-summary strong {
-      display: block;
-      color: var(--mecalux-blue-dark);
-      font-size: 1.35rem;
-      line-height: 1.2;
-      letter-spacing: -0.025em;
-    }
-
-    .legend-summary p {
-      margin: 14px 0 0;
-      color: var(--muted);
-    }
-
-    .class-list {
+    .legend-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
+      margin-top: 26px;
     }
 
-    .class-card {
-      position: relative;
-      padding: 18px 18px 18px 22px;
+    .legend-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      padding: 17px;
       border-radius: 18px;
-      background: var(--white);
+      background: #ffffff;
       border: 1px solid var(--line);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-      transition: 0.24s ease;
+      box-shadow: 0 8px 18px rgba(6, 43, 79, 0.05);
     }
 
-    .class-card::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 4px;
-      background: linear-gradient(180deg, var(--mecalux-blue), var(--accent));
+    .legend-code {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--mecalux-blue), var(--accent));
+      font-weight: 900;
+      font-size: 0.9rem;
     }
 
-    .class-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
-    }
-
-    .class-code {
-      display: inline-flex;
-      max-width: 100%;
-      margin-bottom: 8px;
-      padding: 6px 9px;
-      border-radius: 999px;
-      background: var(--mecalux-blue-soft);
-      color: var(--mecalux-blue);
-      font-family: Consolas, "Courier New", monospace;
-      font-weight: 800;
-      font-size: 0.78rem;
+    .legend-item strong {
+      display: block;
+      color: var(--mecalux-blue-dark);
+      line-height: 1.2;
       word-break: break-word;
     }
 
-    .class-card p {
-      margin: 0;
+    .legend-item p {
+      margin: 6px 0 0;
       color: var(--muted);
-      line-height: 1.52;
-      font-size: 0.95rem;
-    }
-
-    .divider-section {
-      border-top: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(234, 244, 255, 0.55), rgba(255, 255, 255, 0));
+      font-size: 0.94rem;
+      line-height: 1.45;
     }
 
     .gallery-toolbar {
@@ -562,21 +510,21 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
     }
 
     .gallery-card,
     .video-card {
       position: relative;
       margin: 0;
-      border-radius: 20px;
+      border-radius: 22px;
       overflow: hidden;
       background: var(--white);
       border: 1px solid var(--line);
       box-shadow: var(--shadow-soft);
       cursor: pointer;
-      transition: 0.24s ease;
+      transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
     }
 
     .gallery-card:hover,
@@ -585,34 +533,70 @@
     .video-card:focus-visible {
       transform: translateY(-5px);
       box-shadow: var(--shadow);
+      border-color: rgba(25, 167, 206, 0.36);
       outline: none;
+    }
+
+    .gallery-card::after {
+      content: "Ampliar";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      color: var(--white);
+      background: rgba(6, 43, 79, 0.76);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(10px);
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: 0.22s ease;
+      pointer-events: none;
+    }
+
+    .gallery-card:hover::after,
+    .gallery-card:focus-visible::after {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .gallery-card img {
       width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
+      aspect-ratio: 16 / 10;
+      object-fit: contain;
+      object-position: center;
+      padding: 12px;
+      background:
+        radial-gradient(circle at top left, rgba(141, 232, 255, 0.18), transparent 16rem),
+        linear-gradient(180deg, #f8fbff 0%, #edf5fd 100%);
       transition: transform 0.34s ease;
     }
 
     .gallery-card:hover img {
-      transform: scale(1.045);
+      transform: scale(1.025);
     }
 
     .gallery-card figcaption {
-      position: absolute;
-      inset: auto 12px 12px 12px;
-      padding: 12px;
-      border-radius: 16px;
-      background: rgba(6, 43, 79, 0.82);
-      color: var(--white);
-      backdrop-filter: blur(10px);
+      position: static;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      min-height: 76px;
+      padding: 15px 17px 17px;
+      border-top: 1px solid var(--line);
+      background: var(--white);
+      color: var(--ink);
     }
 
     .gallery-card figcaption span,
     .video-info span {
       display: block;
-      color: #8de8ff;
+      color: var(--mecalux-blue);
       font-size: 0.72rem;
       font-weight: 850;
       text-transform: uppercase;
@@ -623,8 +607,20 @@
     .video-info strong {
       display: block;
       margin-top: 4px;
+      color: var(--mecalux-blue-dark);
       font-size: 0.95rem;
       line-height: 1.2;
+    }
+
+    .gallery-card figcaption::after {
+      content: "";
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, var(--mecalux-blue), var(--accent));
+      box-shadow: inset 0 0 0 9px rgba(255, 255, 255, 0.86);
     }
 
     .video-grid {
@@ -673,14 +669,6 @@
 
     .video-info {
       padding: 16px 18px 18px;
-    }
-
-    .video-info span {
-      color: var(--mecalux-blue);
-    }
-
-    .video-info strong {
-      color: var(--mecalux-blue-dark);
     }
 
     .final-cta {
@@ -758,54 +746,42 @@
       display: block;
     }
 
-    .modal-close {
-      position: fixed;
-      top: 18px;
-      right: 18px;
-      z-index: 1001;
-      width: 46px;
-      height: 46px;
-      border: 1px solid rgba(255, 255, 255, 0.24);
+    .close-modal {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+      width: 42px;
+      height: 42px;
+      border: 0;
       border-radius: 999px;
       color: var(--white);
       background: rgba(255, 255, 255, 0.12);
       cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .modal-close:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: rotate(90deg);
-    }
-
-    .modal-close svg {
-      width: 20px;
-      height: 20px;
-      stroke: currentColor;
-      stroke-width: 2.2;
-      stroke-linecap: round;
+      font-size: 1.4rem;
+      line-height: 1;
     }
 
     .reveal {
       opacity: 0;
       transform: translateY(22px);
-      transition: opacity 0.72s ease, transform 0.72s ease;
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
-    .reveal.is-visible {
+    .reveal.appear {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .reveal-delay-1 { transition-delay: 0.09s; }
-    .reveal-delay-2 { transition-delay: 0.18s; }
-    .reveal-delay-3 { transition-delay: 0.27s; }
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
 
-    @media (max-width: 920px) {
-      .site-header {
-        padding-bottom: 64px;
-      }
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
 
+    @media (max-width: 980px) {
       .topbar {
         align-items: flex-start;
         flex-direction: column;
@@ -815,68 +791,60 @@
         justify-content: flex-start;
       }
 
-      .hero,
-      .legend-panel {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 54px;
+      }
+
+      .impact-grid,
+      .legend-grid {
         grid-template-columns: 1fr;
       }
 
-      .impact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .class-list {
-        grid-template-columns: 1fr;
+      .section-header,
+      .gallery-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 620px) {
       .site-header {
         padding: 22px 18px 58px;
       }
 
       .brand-strip {
-        gap: 10px;
+        width: 100%;
       }
 
       .logo-card {
-        width: calc(50% - 5px);
-        min-width: 136px;
-      }
-
-      .main-nav {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-
-      .main-nav a {
-        text-align: center;
-      }
-
-      .hero {
-        padding-top: 46px;
-        gap: 30px;
+        width: calc(50% - 7px);
+        min-height: 58px;
       }
 
       .hero h1 {
-        font-size: 2.55rem;
+        font-size: clamp(2.45rem, 15vw, 4rem);
+      }
+
+      .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .page-shell {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .section-card {
+        padding: 24px 18px;
       }
 
       .mini-grid {
         grid-template-columns: 1fr;
-      }
-
-      .page-shell {
-        width: min(100% - 20px, 1180px);
-      }
-
-      section {
-        padding: 34px 20px;
-      }
-
-      .gallery-toolbar {
-        align-items: flex-start;
-        flex-direction: column;
       }
 
       .gallery-grid,
@@ -890,33 +858,34 @@
     }
   </style>
 </head>
+
 <body>
   <header class="site-header">
     <div class="topbar">
-      <div class="brand-strip" aria-label="Entidades del proyecto">
-        <a class="logo-card" href="https://www.mecalux.es" target="_blank" rel="noopener noreferrer" aria-label="Web de Mecalux">
-          <img src="mecalux-logo.png" alt="Logo Mecalux">
+      <div class="brand-strip" aria-label="Entidades vinculadas al proyecto">
+        <a class="logo-card" href="https://www.mecalux.es" target="_blank" rel="noopener noreferrer" aria-label="Abrir web de Mecalux">
+          <img src="mecalux-logo.png" alt="Logo de Mecalux">
         </a>
-        <a class="logo-card" href="https://www.upc.edu" target="_blank" rel="noopener noreferrer" aria-label="Web de la UPC">
-          <img src="upc-logo.png" alt="Logo UPC">
+        <a class="logo-card" href="https://www.upc.edu" target="_blank" rel="noopener noreferrer" aria-label="Abrir web de la UPC">
+          <img src="upc-logo.png" alt="Logo de la Universitat Politècnica de Catalunya">
         </a>
       </div>
 
       <nav class="main-nav" aria-label="Navegación principal">
-        <a href="index.html">¿Qué estamos solucionando?</a>
+        <a href="index.html">Problema</a>
         <a href="resultados.html" aria-current="page">Resultados</a>
-        <a href="demo.html">Pruébalo tú mismo</a>
+        <a href="demo.html">Demo</a>
         <a href="modelo.html">Modelo</a>
         <a href="contacto.html">Contacto</a>
       </nav>
     </div>
 
-    <section class="hero" aria-label="Resumen de resultados del modelo">
-      <div class="hero-copy reveal">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="reveal">
         <p class="eyebrow">Validación visual del sistema</p>
-        <h1>Resultados del <span>modelo YOLOv11x</span></h1>
+        <h1 id="hero-title">Resultados del <span>modelo YOLOv11x</span></h1>
         <p class="hero-lead">
-          Ejemplos reales de detección sobre imágenes y vídeos para comprobar cómo el sistema identifica palets, embalajes y dimensiones en escenarios logísticos.
+          Evidencia visual del funcionamiento del sistema mediante predicciones sobre imágenes y pruebas en vídeo, manteniendo una navegación coherente con la página principal.
         </p>
         <div class="hero-actions" aria-label="Acciones de navegación">
           <a class="btn btn-primary" href="#galeria">Ver predicciones</a>
@@ -924,12 +893,12 @@
         </div>
       </div>
 
-      <aside class="hero-panel reveal reveal-delay-1" aria-label="Resumen cuantitativo de resultados">
+      <aside class="hero-panel reveal reveal-delay-1" aria-label="Resumen de resultados">
         <div class="results-preview">
           <div class="preview-main">
             <small>Salida del sistema</small>
-            <strong>Detección multicategoría orientada a inspección logística</strong>
-            <p>La página muestra evidencia visual del funcionamiento del modelo mediante predicciones sobre imágenes y pruebas en vídeo.</p>
+            <strong>Detección multicategoría para inspección logística</strong>
+            <p>El modelo identifica palets, embalajes y dimensiones para apoyar una revisión más visual, objetiva y rápida.</p>
           </div>
           <div class="mini-grid">
             <div class="mini-card">
@@ -969,503 +938,515 @@
       </article>
     </div>
 
-    <div class="content-card">
-      <section aria-labelledby="clasificaciones-title">
-        <div class="section-heading reveal">
-          <p class="kicker">Clasificaciones</p>
-          <h2 id="clasificaciones-title">Leyenda de las clases detectadas por el modelo.</h2>
-          <p>
-            Estas categorías permiten traducir la salida técnica del modelo en criterios comprensibles para una inspección logística: estado del palet, calidad del embalaje y adecuación dimensional.
-          </p>
-        </div>
-
-        <div class="legend-panel">
-          <div class="legend-summary reveal reveal-delay-1">
-            <strong>Una lectura más clara de cada predicción.</strong>
-            <p>
-              La nomenclatura mantiene el nombre técnico de cada clase, pero la interfaz la presenta como una explicación operativa para que el evaluador entienda rápidamente qué está detectando el sistema.
-            </p>
-          </div>
-
-          <div class="class-list reveal reveal-delay-2">
-            <article class="class-card">
-              <span class="class-code">palet_bueno</span>
-              <p>Palet en buen estado, sin daños visibles.</p>
-            </article>
-            <article class="class-card">
-              <span class="class-code">palet_roto</span>
-              <p>Palet con daños visibles, como tablas rotas, deformaciones o fisuras.</p>
-            </article>
-            <article class="class-card">
-              <span class="class-code">paquete_emb_correct_dim_correct</span>
-              <p>Paquete bien embalado y con dimensiones correctas respecto al estándar esperado.</p>
-            </article>
-            <article class="class-card">
-              <span class="class-code">paquete_emb_incorrect_dim_correct</span>
-              <p>Paquete con embalaje incorrecto, pero con dimensiones correctas.</p>
-            </article>
-            <article class="class-card">
-              <span class="class-code">paquete_emb_correct_dim_incorrect</span>
-              <p>Embalaje correcto, pero con dimensiones incorrectas o fuera del volumen esperado.</p>
-            </article>
-            <article class="class-card">
-              <span class="class-code">paquete_emb_incorrect_dim_incorrect</span>
-              <p>Paquete con embalaje incorrecto y dimensiones también incorrectas.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="galeria" class="divider-section" aria-labelledby="galeria-title">
-        <div class="gallery-toolbar reveal">
+    <section class="section">
+      <div class="section-card reveal">
+        <div class="section-header">
           <div>
-            <p class="kicker">Predicciones sobre imagen</p>
-            <h2 id="galeria-title">Galería visual del modelo.</h2>
+            <span class="kicker">Clases del modelo</span>
+            <h2>Leyenda de clasificaciones</h2>
           </div>
-          <p class="toolbar-note">
-            Haz clic sobre cualquier tarjeta para ampliar la predicción y revisar los detalles visuales con más comodidad.
+          <p class="section-intro">
+            Las categorías del sistema separan el estado del palet, la calidad del embalaje y la corrección dimensional de la mercancía.
           </p>
         </div>
 
-        <div class="status-pill reveal reveal-delay-1">20 ejemplos de predicción</div>
+        <div class="legend-grid">
+          <article class="legend-item">
+            <span class="legend-code">01</span>
+            <div>
+              <strong>palet_bueno</strong>
+              <p>Palet en buen estado, sin daños visibles.</p>
+            </div>
+          </article>
+          <article class="legend-item">
+            <span class="legend-code">02</span>
+            <div>
+              <strong>palet_roto</strong>
+              <p>Palet con daños visibles, como tablas rotas, deformaciones o fisuras.</p>
+            </div>
+          </article>
+          <article class="legend-item">
+            <span class="legend-code">03</span>
+            <div>
+              <strong>paquete_emb_correct_dim_correct</strong>
+              <p>Paquete bien embalado y con dimensiones correctas respecto al estándar esperado.</p>
+            </div>
+          </article>
+          <article class="legend-item">
+            <span class="legend-code">04</span>
+            <div>
+              <strong>paquete_emb_incorrect_dim_correct</strong>
+              <p>Embalaje incorrecto, mal cerrado, roto o mal colocado, pero con dimensiones correctas.</p>
+            </div>
+          </article>
+          <article class="legend-item">
+            <span class="legend-code">05</span>
+            <div>
+              <strong>paquete_emb_correct_dim_incorrect</strong>
+              <p>Embalaje correcto, pero dimensiones incorrectas o mercancía fuera del estándar.</p>
+            </div>
+          </article>
+          <article class="legend-item">
+            <span class="legend-code">06</span>
+            <div>
+              <strong>paquete_emb_incorrect_dim_incorrect</strong>
+              <p>Embalaje mal realizado y dimensiones incorrectas: escenario de mayor riesgo.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        <div class="gallery-grid" style="margin-top: 22px;">
+    <section id="galeria" class="section">
+      <div class="gallery-toolbar reveal">
+        <div>
+          <span class="kicker">Predicciones visuales</span>
+          <h2>Galería de imágenes</h2>
+        </div>
+        <p class="toolbar-note">
+          Las previsualizaciones ahora priorizan la imagen: el texto queda debajo y no tapa la detección. Haz clic en cualquier tarjeta para ampliarla.
+        </p>
+      </div>
+
+      <span class="status-pill reveal">20 ejemplos de predicción</span>
+
+      <div class="gallery-grid" style="margin-top: 22px;">
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 01">
             <img src="multimedia/prediccion1.png" alt="Predicción visual 01 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 01</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 01</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 02">
             <img src="multimedia/prediccion2.png" alt="Predicción visual 02 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 02</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 02</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 03">
             <img src="multimedia/prediccion3.png" alt="Predicción visual 03 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 03</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 03</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 04">
             <img src="multimedia/prediccion4.png" alt="Predicción visual 04 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 04</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 04</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 05">
             <img src="multimedia/prediccion5.png" alt="Predicción visual 05 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 05</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 05</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 06">
             <img src="multimedia/prediccion6.png" alt="Predicción visual 06 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 06</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 06</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 07">
             <img src="multimedia/prediccion7.png" alt="Predicción visual 07 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 07</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 07</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 08">
             <img src="multimedia/prediccion8.png" alt="Predicción visual 08 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 08</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 08</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 09">
             <img src="multimedia/prediccion9.png" alt="Predicción visual 09 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 09</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 09</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 10">
             <img src="multimedia/prediccion10.png" alt="Predicción visual 10 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 10</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 10</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 11">
             <img src="multimedia/prediccion11.png" alt="Predicción visual 11 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 11</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 11</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 12">
             <img src="multimedia/prediccion12.png" alt="Predicción visual 12 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 12</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 12</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 13">
             <img src="multimedia/prediccion13.png" alt="Predicción visual 13 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 13</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 13</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 14">
             <img src="multimedia/prediccion14.png" alt="Predicción visual 14 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 14</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 14</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 15">
             <img src="multimedia/prediccion15.png" alt="Predicción visual 15 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 15</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 15</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 16">
             <img src="multimedia/prediccion16.png" alt="Predicción visual 16 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 16</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 16</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 17">
             <img src="multimedia/prediccion17.png" alt="Predicción visual 17 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 17</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 17</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 18">
             <img src="multimedia/prediccion18.png" alt="Predicción visual 18 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 18</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 18</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 19">
             <img src="multimedia/prediccion19.png" alt="Predicción visual 19 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 19</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 19</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
           <figure class="gallery-card reveal" onclick="openImageModal(this.querySelector('img'))" tabindex="0" role="button" aria-label="Abrir predicción 20">
             <img src="multimedia/prediccion20.png" alt="Predicción visual 20 del modelo sobre mercancía logística">
             <figcaption>
-              <span>Predicción 20</span>
-              <strong>Detección sobre imagen</strong>
+              <div>
+                <span>Predicción 20</span>
+                <strong>Ver detección ampliada</strong>
+              </div>
             </figcaption>
           </figure>
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="videos" aria-labelledby="videos-title">
-        <div class="gallery-toolbar reveal">
-          <div>
-            <p class="kicker">Pruebas en vídeo</p>
-            <h2 id="videos-title">Demostraciones de detección en movimiento.</h2>
-          </div>
-          <p class="toolbar-note">
-            Los vídeos permiten enseñar el comportamiento del sistema de forma más convincente y dinámica para una presentación de candidatura.
-          </p>
+    <section id="videos" class="section">
+      <div class="gallery-toolbar reveal">
+        <div>
+          <span class="kicker">Pruebas en vídeo</span>
+          <h2>Vídeos de prueba</h2>
         </div>
+        <p class="toolbar-note">
+          Pruebas visuales en movimiento para mostrar cómo se comporta el sistema ante escenas logísticas reales o simuladas.
+        </p>
+      </div>
 
-        <div class="video-grid">
+      <div class="video-grid">
           <article class="video-card reveal" onclick="openVideoModal('https://www.youtube.com/embed/_x2B9feLR_M')" tabindex="0" role="button" aria-label="Abrir vídeo de prueba 01">
             <div class="video-thumb-wrap">
               <img src="multimedia/video1-thumb.jpg" alt="Miniatura del vídeo de prueba 01">
               <span class="play-button" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M8 5v14l11-7-11-7Z"></path>
-                </svg>
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
               </span>
             </div>
             <div class="video-info">
               <span>Vídeo 01</span>
-              <strong>Prueba de detección en escenario realista</strong>
+              <strong>Prueba de detección en movimiento</strong>
             </div>
           </article>
           <article class="video-card reveal" onclick="openVideoModal('https://www.youtube.com/embed/tc2GudUJOqM')" tabindex="0" role="button" aria-label="Abrir vídeo de prueba 02">
             <div class="video-thumb-wrap">
               <img src="multimedia/video2-thumb.jpg" alt="Miniatura del vídeo de prueba 02">
               <span class="play-button" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M8 5v14l11-7-11-7Z"></path>
-                </svg>
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
               </span>
             </div>
             <div class="video-info">
               <span>Vídeo 02</span>
-              <strong>Prueba de detección en escenario realista</strong>
+              <strong>Prueba de detección en movimiento</strong>
             </div>
           </article>
           <article class="video-card reveal" onclick="openVideoModal('https://www.youtube.com/embed/H1WOykaLp3E')" tabindex="0" role="button" aria-label="Abrir vídeo de prueba 03">
             <div class="video-thumb-wrap">
               <img src="multimedia/video3-thumb.jpg" alt="Miniatura del vídeo de prueba 03">
               <span class="play-button" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M8 5v14l11-7-11-7Z"></path>
-                </svg>
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
               </span>
             </div>
             <div class="video-info">
               <span>Vídeo 03</span>
-              <strong>Prueba de detección en escenario realista</strong>
+              <strong>Prueba de detección en movimiento</strong>
             </div>
           </article>
           <article class="video-card reveal" onclick="openVideoModal('https://www.youtube.com/embed/-sTBVntYZiw')" tabindex="0" role="button" aria-label="Abrir vídeo de prueba 04">
             <div class="video-thumb-wrap">
               <img src="multimedia/video4-thumb.jpg" alt="Miniatura del vídeo de prueba 04">
               <span class="play-button" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M8 5v14l11-7-11-7Z"></path>
-                </svg>
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
               </span>
             </div>
             <div class="video-info">
               <span>Vídeo 04</span>
-              <strong>Prueba de detección en escenario realista</strong>
+              <strong>Prueba de detección en movimiento</strong>
             </div>
           </article>
           <article class="video-card reveal" onclick="openVideoModal('https://www.youtube.com/embed/0QFPH5KUd64')" tabindex="0" role="button" aria-label="Abrir vídeo de prueba 05">
             <div class="video-thumb-wrap">
               <img src="multimedia/video5-thumb.jpg" alt="Miniatura del vídeo de prueba 05">
               <span class="play-button" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M8 5v14l11-7-11-7Z"></path>
-                </svg>
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
               </span>
             </div>
             <div class="video-info">
               <span>Vídeo 05</span>
-              <strong>Prueba de detección en escenario realista</strong>
+              <strong>Prueba de detección en movimiento</strong>
             </div>
           </article>
           <article class="video-card reveal" onclick="openVideoModal('https://www.youtube.com/embed/DPNFMINi_Lw')" tabindex="0" role="button" aria-label="Abrir vídeo de prueba 06">
             <div class="video-thumb-wrap">
               <img src="multimedia/video6-thumb.jpg" alt="Miniatura del vídeo de prueba 06">
               <span class="play-button" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M8 5v14l11-7-11-7Z"></path>
-                </svg>
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
               </span>
             </div>
             <div class="video-info">
               <span>Vídeo 06</span>
-              <strong>Prueba de detección en escenario realista</strong>
+              <strong>Prueba de detección en movimiento</strong>
             </div>
           </article>
           <article class="video-card reveal" onclick="openVideoModal('https://www.youtube.com/embed/8psGr0zyl8o')" tabindex="0" role="button" aria-label="Abrir vídeo de prueba 07">
             <div class="video-thumb-wrap">
               <img src="multimedia/video7-thumb.jpg" alt="Miniatura del vídeo de prueba 07">
               <span class="play-button" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M8 5v14l11-7-11-7Z"></path>
-                </svg>
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
               </span>
             </div>
             <div class="video-info">
               <span>Vídeo 07</span>
-              <strong>Prueba de detección en escenario realista</strong>
+              <strong>Prueba de detección en movimiento</strong>
             </div>
           </article>
           <article class="video-card reveal" onclick="openVideoModal('https://www.youtube.com/embed/75yDB-VupY4')" tabindex="0" role="button" aria-label="Abrir vídeo de prueba 08">
             <div class="video-thumb-wrap">
               <img src="multimedia/video8-thumb.jpg" alt="Miniatura del vídeo de prueba 08">
               <span class="play-button" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M8 5v14l11-7-11-7Z"></path>
-                </svg>
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
               </span>
             </div>
             <div class="video-info">
               <span>Vídeo 08</span>
-              <strong>Prueba de detección en escenario realista</strong>
+              <strong>Prueba de detección en movimiento</strong>
             </div>
           </article>
           <article class="video-card reveal" onclick="openVideoModal('https://www.youtube.com/embed/PzMr102rF0M')" tabindex="0" role="button" aria-label="Abrir vídeo de prueba 09">
             <div class="video-thumb-wrap">
               <img src="multimedia/video9-thumb.jpg" alt="Miniatura del vídeo de prueba 09">
               <span class="play-button" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M8 5v14l11-7-11-7Z"></path>
-                </svg>
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
               </span>
             </div>
             <div class="video-info">
               <span>Vídeo 09</span>
-              <strong>Prueba de detección en escenario realista</strong>
+              <strong>Prueba de detección en movimiento</strong>
             </div>
           </article>
           <article class="video-card reveal" onclick="openVideoModal('https://www.youtube.com/embed/jwJQq2HzWL4')" tabindex="0" role="button" aria-label="Abrir vídeo de prueba 10">
             <div class="video-thumb-wrap">
               <img src="multimedia/video10-thumb.jpg" alt="Miniatura del vídeo de prueba 10">
               <span class="play-button" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M8 5v14l11-7-11-7Z"></path>
-                </svg>
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
               </span>
             </div>
             <div class="video-info">
               <span>Vídeo 10</span>
-              <strong>Prueba de detección en escenario realista</strong>
+              <strong>Prueba de detección en movimiento</strong>
             </div>
           </article>
           <article class="video-card reveal" onclick="openVideoModal('https://www.youtube.com/embed/hNp9rSM8dNA')" tabindex="0" role="button" aria-label="Abrir vídeo de prueba 11">
             <div class="video-thumb-wrap">
               <img src="multimedia/video11-thumb.jpg" alt="Miniatura del vídeo de prueba 11">
               <span class="play-button" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M8 5v14l11-7-11-7Z"></path>
-                </svg>
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
               </span>
             </div>
             <div class="video-info">
               <span>Vídeo 11</span>
-              <strong>Prueba de detección en escenario realista</strong>
+              <strong>Prueba de detección en movimiento</strong>
             </div>
           </article>
           <article class="video-card reveal" onclick="openVideoModal('https://www.youtube.com/embed/vP7gcJx7eJI')" tabindex="0" role="button" aria-label="Abrir vídeo de prueba 12">
             <div class="video-thumb-wrap">
               <img src="multimedia/video12-thumb.jpg" alt="Miniatura del vídeo de prueba 12">
               <span class="play-button" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M8 5v14l11-7-11-7Z"></path>
-                </svg>
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
               </span>
             </div>
             <div class="video-info">
               <span>Vídeo 12</span>
-              <strong>Prueba de detección en escenario realista</strong>
+              <strong>Prueba de detección en movimiento</strong>
             </div>
           </article>
-        </div>
-      </section>
+      </div>
+    </section>
 
-      <section aria-label="Cierre de resultados">
-        <div class="final-cta reveal">
-          <p class="kicker">Lectura final</p>
-          <h2>Resultados presentados de forma clara, visual y profesional.</h2>
-          <p>
-            Esta sección refuerza la candidatura mostrando evidencia práctica del modelo: qué detecta, cómo lo clasifica y cómo puede ayudar a tomar decisiones más objetivas en recepción logística.
-          </p>
-          <div class="hero-actions" style="justify-content: center;">
-            <a class="btn btn-primary" href="demo.html">Probar la demo</a>
-            <a class="btn btn-secondary" href="modelo.html">Ver detalles del modelo</a>
-          </div>
+    <section class="section">
+      <div class="final-cta reveal">
+        <span class="kicker">Presentación del proyecto</span>
+        <h2>Resultados pensados para explicar valor técnico y aplicabilidad industrial</h2>
+        <p>
+          Esta página reúne la evidencia visual clave para que el proyecto pueda defenderse con claridad ante una evaluación técnica, empresarial o de innovación.
+        </p>
+        <div class="hero-actions" style="justify-content: center;">
+          <a class="btn btn-primary" href="demo.html">Ir a la demo</a>
+          <a class="btn btn-secondary" href="modelo.html">Ver modelo</a>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    &copy; 2025 Marc Rubí · Mecalux Pallet Detection · Resultados de visión por computador para inspección logística
+    &copy; 2025 Marc Rubí · Mecalux Pallet Detection
   </footer>
 
-  <div id="imageModal" class="modal" aria-hidden="true" onclick="closeModal(event)">
-    <button class="modal-close" type="button" aria-label="Cerrar ventana" onclick="forceCloseModal(event)">
-      <svg viewBox="0 0 24 24" fill="none" focusable="false">
-        <path d="M6 6l12 12"></path>
-        <path d="M18 6 6 18"></path>
-      </svg>
-    </button>
-    <div class="modal-content" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
-      <img id="modalImg" src="" alt="Predicción ampliada del modelo">
+  <div id="imageModal" class="modal" onclick="closeModal(event)" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-modal" type="button" onclick="forceCloseModal()" aria-label="Cerrar ventana">×</button>
+      <img id="modalImg" src="" alt="Vista ampliada de la predicción">
     </div>
   </div>
 
-  <div id="videoModal" class="modal" aria-hidden="true" onclick="closeModal(event)">
-    <button class="modal-close" type="button" aria-label="Cerrar ventana" onclick="forceCloseModal(event)">
-      <svg viewBox="0 0 24 24" fill="none" focusable="false">
-        <path d="M6 6l12 12"></path>
-        <path d="M18 6 6 18"></path>
-      </svg>
-    </button>
-    <div class="modal-content" role="dialog" aria-modal="true" aria-label="Vídeo de prueba">
-      <iframe id="modalVideo" src="" title="Vídeo de prueba del modelo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <div id="videoModal" class="modal" onclick="closeModal(event)" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-modal" type="button" onclick="forceCloseModal()" aria-label="Cerrar ventana">×</button>
+      <iframe id="modalVideo" title="Vídeo de prueba del modelo" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
   </div>
 
   <script>
-    const revealElements = document.querySelectorAll('.reveal');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.14 });
-
-    revealElements.forEach((element) => observer.observe(element));
-
     function openImageModal(imgElement) {
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImg');
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImg");
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
       modalImg.src = imgElement.src;
-      modalImg.alt = imgElement.alt || 'Predicción ampliada del modelo';
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     }
 
     function openVideoModal(url) {
-      const modal = document.getElementById('videoModal');
-      const iframe = document.getElementById('modalVideo');
-      iframe.src = url + '?autoplay=1&rel=0';
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      const modal = document.getElementById("videoModal");
+      const iframe = document.getElementById("modalVideo");
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      iframe.src = url;
+      document.body.style.overflow = "hidden";
+    }
+
+    function forceCloseModal() {
+      document.getElementById("imageModal").classList.remove("is-open");
+      document.getElementById("videoModal").classList.remove("is-open");
+      document.getElementById("imageModal").setAttribute("aria-hidden", "true");
+      document.getElementById("videoModal").setAttribute("aria-hidden", "true");
+      document.getElementById("modalImg").src = "";
+      document.getElementById("modalVideo").src = "";
+      document.body.style.overflow = "";
     }
 
     function closeModal(event) {
-      if (event.target.classList.contains('modal')) {
-        closeAllModals();
+      if (event.target.classList.contains("modal")) {
+        forceCloseModal();
       }
     }
 
-    function forceCloseModal(event) {
-      event.stopPropagation();
-      closeAllModals();
-    }
-
-    function closeAllModals() {
-      const imageModal = document.getElementById('imageModal');
-      const videoModal = document.getElementById('videoModal');
-      imageModal.classList.remove('is-open');
-      videoModal.classList.remove('is-open');
-      imageModal.setAttribute('aria-hidden', 'true');
-      videoModal.setAttribute('aria-hidden', 'true');
-      document.getElementById('modalImg').src = '';
-      document.getElementById('modalVideo').src = '';
-      document.body.style.overflow = '';
-    }
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        closeAllModals();
-      }
-
-      if ((event.key === 'Enter' || event.key === ' ') && event.target.matches('.gallery-card, .video-card')) {
-        event.preventDefault();
-        event.target.click();
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        forceCloseModal();
       }
     });
+
+    document.querySelectorAll(".gallery-card, .video-card").forEach(function(card) {
+      card.addEventListener("keydown", function(event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          card.click();
+        }
+      });
+    });
+
+    const elements = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("appear");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    elements.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
