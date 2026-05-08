@@ -2,128 +2,945 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Contacto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contacto del proyecto Mecalux Pallet Detection: sistema de visión por computador para inspección automática de palets y mercancías.">
+  <title>Contacto | Mecalux Pallet Detection</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.8s ease-out forwards;
+    :root {
+      --mecalux-blue: #004b8d;
+      --mecalux-blue-dark: #062b4f;
+      --mecalux-blue-soft: #eaf4ff;
+      --accent: #19a7ce;
+      --ink: #14213d;
+      --muted: #5f6f89;
+      --line: #dce7f3;
+      --bg: #f4f8fc;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(6, 43, 79, 0.13);
+      --shadow-soft: 0 10px 28px rgba(6, 43, 79, 0.08);
+      --radius-lg: 26px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
     }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: none;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(25, 167, 206, 0.15), transparent 32rem),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 45%, #ffffff 100%);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; }
+
+    .site-header {
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        linear-gradient(135deg, rgba(0, 75, 141, 0.98), rgba(6, 43, 79, 0.98));
+      padding: 28px 6vw 72px;
+    }
+
+    .site-header::before,
+    .site-header::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      pointer-events: none;
+    }
+
+    .site-header::before {
+      width: 380px;
+      height: 380px;
+      right: -120px;
+      top: -160px;
+    }
+
+    .site-header::after {
+      width: 240px;
+      height: 240px;
+      left: -90px;
+      bottom: -120px;
+    }
+
+    .topbar,
+    .hero {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand-strip {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .logo-card {
+      width: 156px;
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
+    }
+
+    .logo-card img {
+      max-height: 48px;
+      object-fit: contain;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-weight: 650;
+      font-size: 0.95rem;
+    }
+
+    .main-nav a {
+      padding: 10px 13px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.88);
+      transition: 0.22s ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a[aria-current="page"] {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      align-items: center;
+      gap: 54px;
+      padding-top: 76px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: rgba(255, 255, 255, 0.94);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 0.88rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #6ee7ff;
+      box-shadow: 0 0 0 5px rgba(110, 231, 255, 0.16);
+    }
+
+    .hero h1 {
+      margin: 0;
+      max-width: 760px;
+      color: var(--white);
+      font-size: clamp(2.7rem, 5vw, 5.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: #8de8ff;
+    }
+
+    .hero-lead {
+      margin: 24px 0 0;
+      max-width: 720px;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: 0.22s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      color: var(--mecalux-blue-dark);
+      background: var(--white);
+      box-shadow: 0 13px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .btn-secondary {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.16);
+    }
+
+    .hero-panel {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(12px);
+    }
+
+    .profile-hero {
+      position: relative;
+      min-height: 420px;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top left, rgba(141, 232, 255, 0.3), transparent 18rem),
+        linear-gradient(180deg, #ffffff 0%, #f5f9ff 100%);
+    }
+
+    .profile-hero::before,
+    .profile-hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 75, 141, 0.14);
+      pointer-events: none;
+    }
+
+    .profile-hero::before {
+      width: 220px;
+      height: 220px;
+      top: -70px;
+      right: -70px;
+      background: rgba(25, 167, 206, 0.1);
+    }
+
+    .profile-hero::after {
+      width: 140px;
+      height: 140px;
+      left: -50px;
+      bottom: 40px;
+      background: rgba(0, 75, 141, 0.08);
+    }
+
+    .profile-image-wrap {
+      position: relative;
+      z-index: 1;
+      width: min(330px, 80%);
+      margin: 38px auto 0;
+      border-radius: 26px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(0, 75, 141, 0.12);
+      box-shadow: 0 20px 48px rgba(6, 43, 79, 0.2);
+    }
+
+    .profile-image-wrap img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 20px;
+    }
+
+    .profile-overlay {
+      position: relative;
+      z-index: 2;
+      margin: 18px;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ink);
+      box-shadow: 0 14px 32px rgba(6, 43, 79, 0.13);
+      backdrop-filter: blur(12px);
+    }
+
+    .profile-overlay small {
+      display: block;
+      color: var(--mecalux-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 900;
+      font-size: 0.72rem;
+      margin-bottom: 6px;
+    }
+
+    .profile-overlay strong {
+      display: block;
+      color: var(--mecalux-blue-dark);
+      font-size: 1.28rem;
+      line-height: 1.15;
+    }
+
+    .profile-overlay span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .page-shell {
+      width: min(1180px, calc(100% - 36px));
+      margin: -44px auto 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+
+    .overview-card {
+      padding: 24px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      transition: 0.25s ease;
+    }
+
+    .overview-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .overview-card small {
+      display: block;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.76rem;
+    }
+
+    .overview-card strong {
+      display: block;
+      margin: 8px 0 6px;
+      color: var(--mecalux-blue);
+      font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .overview-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.96rem;
+    }
+
+    .section {
+      padding: clamp(54px, 8vw, 82px) 0;
+    }
+
+    .section-card {
+      padding: clamp(28px, 5vw, 46px);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--mecalux-blue);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(25, 167, 206, 0.14);
+    }
+
+    h2 {
+      margin: 10px 0 0;
+      color: var(--mecalux-blue-dark);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.06;
+      letter-spacing: -0.05em;
+    }
+
+    .section-intro {
+      max-width: 620px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .contact-main {
+      padding: 30px;
+      border-radius: 24px;
+      color: var(--white);
+      background:
+        radial-gradient(circle at top right, rgba(141, 232, 255, 0.24), transparent 18rem),
+        linear-gradient(135deg, #062b4f, #004b8d);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-main h3,
+    .contact-card h3,
+    .availability-card h3 {
+      margin: 0 0 10px;
+      font-size: clamp(1.5rem, 2.8vw, 2rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .contact-main p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.84);
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .email-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-top: 24px;
+      padding: 15px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .email-strip span {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+    }
+
+    .email-strip strong {
+      display: block;
+      color: var(--white);
+      word-break: break-word;
+      line-height: 1.25;
+    }
+
+    .copy-button {
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: var(--mecalux-blue-dark);
+      background: var(--white);
+      font-weight: 850;
+      cursor: pointer;
+      transition: 0.22s ease;
+    }
+
+    .copy-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.13);
+    }
+
+    .contact-side {
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 20px;
+      border-radius: 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 20px rgba(6, 43, 79, 0.06);
+      transition: 0.24s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft);
+      border-color: rgba(25, 167, 206, 0.34);
+    }
+
+    .contact-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--mecalux-blue), var(--accent));
+    }
+
+    .contact-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contact-card small {
+      display: block;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 850;
+      font-size: 0.72rem;
+      margin-bottom: 6px;
+    }
+
+    .contact-card strong {
+      display: block;
+      color: var(--mecalux-blue-dark);
+      font-size: 1.08rem;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    .contact-card span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .availability-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .availability-card {
+      padding: 24px;
+      border-radius: 22px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 18px rgba(6, 43, 79, 0.05);
+      transition: 0.24s ease;
+    }
+
+    .availability-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .availability-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--mecalux-blue-soft);
+      color: var(--mecalux-blue);
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .availability-card p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .final-cta {
+      text-align: center;
+      padding: clamp(34px, 6vw, 58px);
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at top right, rgba(141, 232, 255, 0.28), transparent 23rem),
+        linear-gradient(135deg, #062b4f, #004b8d);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .final-cta .kicker {
+      color: #8de8ff;
+      justify-content: center;
+    }
+
+    .final-cta h2 { color: var(--white); }
+
+    .final-cta p {
+      max-width: 740px;
+      margin: 18px auto 0;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .site-footer {
+      margin-top: 70px;
+      padding: 30px 6vw;
+      text-align: center;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.66);
+      border-top: 1px solid var(--line);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+
+    @media (max-width: 980px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .main-nav { justify-content: flex-start; }
+      .hero,
+      .contact-grid { grid-template-columns: 1fr; }
+      .overview-grid,
+      .availability-grid { grid-template-columns: 1fr; }
+      .section-header {
+        align-items: flex-start;
+        flex-direction: column;
       }
     }
 
-    .subrayado-animado {
-      display: inline-block;
-      position: relative;
-    }
+    @media (max-width: 620px) {
+      .site-header { padding: 22px 18px 58px; }
+      .brand-strip { width: 100%; }
+      .logo-card {
+        width: calc(50% - 7px);
+        min-height: 58px;
+      }
 
-    .subrayado-animado::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 3px;
-      background-color: #004080;
-      animation: expandSubrayado 1s ease-out;
-    }
+      .hero h1 { font-size: clamp(2.45rem, 15vw, 4rem); }
+      .hero-actions,
+      .contact-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
 
-    @keyframes expandSubrayado {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    main {
-      background-color: #f9f9f9;
-      max-width: 85%;
-      margin: 30px auto 20px auto;
-      padding: 30px 30px;
-      border-radius: 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .contact-info {
-      flex: 1 1 55%;
-    }
-
-    .profile-pic {
-      flex: 1 1 35%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .profile-pic img {
-      width: 250px;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      .btn { width: 100%; }
+      .page-shell { width: min(100% - 24px, 1180px); }
+      .section-card,
+      .contact-main { padding: 24px 18px; }
+      .email-strip {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .copy-button { width: 100%; }
+      .profile-image-wrap { width: min(280px, 86%); }
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <div class="header-flex">
-      <div class="logo-column">
-        <a href="https://www.mecalux.es" target="_blank">
-          <img src="mecalux-logo.png" alt="Logo Mecalux" class="logo">
+  <header class="site-header">
+    <div class="topbar">
+      <div class="brand-strip" aria-label="Entidades vinculadas al proyecto">
+        <a class="logo-card" href="https://www.mecalux.es" target="_blank" rel="noopener noreferrer" aria-label="Abrir web de Mecalux">
+          <img src="mecalux-logo.png" alt="Logo de Mecalux">
         </a>
-        <a href="https://www.upc.edu" target="_blank">
-          <img src="upc-logo.png" alt="Logo UPC" class="logo">
+        <a class="logo-card" href="https://www.upc.edu" target="_blank" rel="noopener noreferrer" aria-label="Abrir web de la UPC">
+          <img src="upc-logo.png" alt="Logo de la Universitat Politècnica de Catalunya">
         </a>
       </div>
 
-      <div>
-        <h1 class="header-title" style="margin-bottom: 2px;">Mecalux Pallet Detection</h1>
-        <p style="font-style: italic; color: white; font-size: 0.8em; margin: 0;">
-          Sistema automático para la inspección visual de palets y mercancías en tiempo real
-        </p>
-      </div>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="index.html">Problema</a>
+        <a href="resultados.html">Resultados</a>
+        <a href="demo.html">Demo</a>
+        <a href="modelo.html">Modelo</a>
+        <a href="contacto.html" aria-current="page">Contacto</a>
+      </nav>
     </div>
 
-    <nav>
-      <a href="index.html">¿Qué estamos solucionando?</a>
-      <a href="resultados.html">Resultados</a>
-      <a href="demo.html">Pruébalo tú mismo</a>
-      <a href="modelo.html">Modelo</a>
-      <a href="contacto.html">Contacto</a>
-    </nav>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="reveal">
+        <p class="eyebrow">Contacto y colaboración</p>
+        <h1 id="hero-title">Hablemos del <span>proyecto</span></h1>
+        <p class="hero-lead">
+          Si quieres revisar el modelo, probar una integración, comentar el enfoque técnico o conocer mejor la propuesta, puedes contactar directamente conmigo.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:marc.rubi@estudiantat.upc.edu">Escribirme por email</a>
+          <a class="btn btn-secondary" href="https://github.com/marcrubii/Mecalux-Pallet-Detection" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel reveal reveal-delay-1" aria-label="Perfil del autor">
+        <div class="profile-hero">
+          <div class="profile-image-wrap">
+            <img src="foto.png" alt="Foto de Marc Rubí García">
+          </div>
+          <div class="profile-overlay">
+            <small>Autor del proyecto</small>
+            <strong>Marc Rubí García</strong>
+            <span>Computer Vision · Logística industrial · UPC</span>
+          </div>
+        </div>
+      </aside>
+    </section>
   </header>
 
-  <main>
-    <div class="contact-info">
-      <h2 class="fade-in subrayado-animado">Contacto</h2>
+  <main class="page-shell">
+    <section class="overview-grid" aria-label="Resumen de contacto">
+      <article class="overview-card reveal">
+        <small>Perfil</small>
+        <strong>Autor técnico</strong>
+        <p>Desarrollo del sistema de visión por computador aplicado a inspección logística.</p>
+      </article>
+      <article class="overview-card reveal reveal-delay-1">
+        <small>Enfoque</small>
+        <strong>Aplicación real</strong>
+        <p>Proyecto orientado a detección de palets, embalajes y dimensiones en recepción.</p>
+      </article>
+      <article class="overview-card reveal reveal-delay-2">
+        <small>Contacto</small>
+        <strong>Respuesta directa</strong>
+        <p>Email, GitHub y LinkedIn disponibles para dudas, revisión o colaboración.</p>
+      </article>
+    </section>
 
-      <p class="fade-in" style="margin-bottom: 25px; font-size: 1.05em;">
-        Si tienes alguna duda sobre el modelo, sobre cómo instalarlo en tu entorno o entrenarlo, por favor, no dudes en escribirme.
-      </p>
+    <section class="section">
+      <div class="section-card reveal">
+        <div class="section-header">
+          <div>
+            <span class="kicker">Canales de contacto</span>
+            <h2>Contacto profesional</h2>
+          </div>
+          <p class="section-intro">
+            Para cualquier duda sobre el modelo, la instalación, el entrenamiento, los resultados o la posible aplicación industrial, estos son los canales principales.
+          </p>
+        </div>
 
-      <p class="fade-in"><strong>Autor:</strong> Marc Rubí García</p>
-      <p class="fade-in"><strong>Email:</strong> <a href="mailto:marc.rubi@estudiantat.upc.edu">marc.rubi@estudiantat.upc.edu</a></p>
-      <p class="fade-in"><strong>GitHub:</strong> <a href="https://github.com/marcrubii" target="_blank">github.com/marcrubii</a></p>
-      <p class="fade-in"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/marc-rubi/" target="_blank">linkedin.com/in/marc-rubi</a></p>
-    </div>
+        <div class="contact-grid">
+          <div class="contact-main">
+            <h3>¿Quieres comentar la solución?</h3>
+            <p>
+              Estoy disponible para explicar el funcionamiento del modelo, revisar el pipeline técnico, enseñar la demo o comentar posibles mejoras para un entorno logístico real.
+            </p>
 
-    <div class="profile-pic fade-in">
-      <img src="foto.png" alt="Foto del autor">
-    </div>
+            <div class="contact-actions">
+              <a class="btn btn-primary" href="mailto:marc.rubi@estudiantat.upc.edu">Enviar email</a>
+              <a class="btn btn-secondary" href="https://www.linkedin.com/in/marc-rubi/" target="_blank" rel="noopener noreferrer">Abrir LinkedIn</a>
+            </div>
+
+            <div class="email-strip">
+              <div>
+                <span>Email principal</span>
+                <strong id="emailText">marc.rubi@estudiantat.upc.edu</strong>
+              </div>
+              <button class="copy-button" type="button" id="copyEmailButton">Copiar</button>
+            </div>
+          </div>
+
+          <div class="contact-side">
+            <a class="contact-card" href="mailto:marc.rubi@estudiantat.upc.edu">
+              <div class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"></path><path d="m4 7 8 6 8-6"></path></svg>
+              </div>
+              <div>
+                <small>Email</small>
+                <strong>marc.rubi@estudiantat.upc.edu</strong>
+                <span>Canal recomendado para consultas directas.</span>
+              </div>
+            </a>
+
+            <a class="contact-card" href="https://github.com/marcrubii" target="_blank" rel="noopener noreferrer">
+              <div class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2-6-2"></path><path d="M15 22v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.1-1.5 6.1-6.7a5.2 5.2 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.6s-1.1-.3-3.7 1.4a12.8 12.8 0 0 0-6.7 0C5.7.3 4.6.6 4.6.6a4.8 4.8 0 0 0-.1 3.6 5.2 5.2 0 0 0-1.4 3.6c0 5.2 3.1 6.4 6.1 6.7a3.4 3.4 0 0 0-.9 2.6V22"></path></svg>
+              </div>
+              <div>
+                <small>GitHub</small>
+                <strong>github.com/marcrubii</strong>
+                <span>Perfil y repositorios del proyecto.</span>
+              </div>
+            </a>
+
+            <a class="contact-card" href="https://www.linkedin.com/in/marc-rubi/" target="_blank" rel="noopener noreferrer">
+              <div class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><path d="M2 9h4v12H2z"></path><path d="M4 4a2 2 0 1 0 0 .01"></path></svg>
+              </div>
+              <div>
+                <small>LinkedIn</small>
+                <strong>linkedin.com/in/marc-rubi</strong>
+                <span>Contacto profesional y trayectoria.</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-card reveal">
+        <div class="section-header">
+          <div>
+            <span class="kicker">Motivos de contacto</span>
+            <h2>¿Sobre qué puedo ayudar?</h2>
+          </div>
+          <p class="section-intro">
+            Esta sección facilita que cualquier evaluador, mentor o colaborador entienda rápidamente qué tipo de conversación puede iniciar.
+          </p>
+        </div>
+
+        <div class="availability-grid">
+          <article class="availability-card">
+            <span class="availability-tag">Técnico</span>
+            <h3>Modelo y entrenamiento</h3>
+            <p>Explicación de YOLOv11x, dataset, clases, entrenamiento, resultados y limitaciones del sistema.</p>
+          </article>
+          <article class="availability-card">
+            <span class="availability-tag">Demo</span>
+            <h3>Pruebas y validación</h3>
+            <p>Revisión de la demo online, ejemplos de uso y posibles escenarios de prueba con nuevas imágenes.</p>
+          </article>
+          <article class="availability-card">
+            <span class="availability-tag">Industria</span>
+            <h3>Aplicación logística</h3>
+            <p>Conversación sobre integración en recepción de mercancías, automatización y mejora de procesos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="final-cta reveal">
+        <span class="kicker">Cierre del proyecto</span>
+        <h2>Una buena solución también debe ser fácil de contactar y defender</h2>
+        <p>
+          Esta página deja claro quién está detrás del proyecto, cómo contactar y qué valor puede aportar el sistema en una evaluación técnica o de innovación.
+        </p>
+        <div class="hero-actions" style="justify-content: center;">
+          <a class="btn btn-primary" href="mailto:marc.rubi@estudiantat.upc.edu">Contactar ahora</a>
+          <a class="btn btn-secondary" href="resultados.html">Ver resultados</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     &copy; 2025 Marc Rubí · Mecalux Pallet Detection
   </footer>
 
+  <script>
+    const elements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('appear');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    elements.forEach(el => observer.observe(el));
+
+    const copyButton = document.getElementById('copyEmailButton');
+    const emailText = document.getElementById('emailText');
+
+    if (copyButton && emailText) {
+      copyButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(emailText.textContent.trim());
+          const previousText = copyButton.textContent;
+          copyButton.textContent = 'Copiado';
+          setTimeout(() => copyButton.textContent = previousText, 1600);
+        } catch (error) {
+          copyButton.textContent = 'No se pudo copiar';
+          setTimeout(() => copyButton.textContent = 'Copiar', 1800);
+        }
+      });
+    }
+  </script>
 </body>
 </html>
