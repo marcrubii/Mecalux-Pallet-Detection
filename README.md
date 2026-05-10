@@ -89,4 +89,4 @@ Este proyecto demuestra cómo las técnicas de **Deep Learning y detección de o
 
 ## Enlace
 Página del proyecto y demo interactiva:  
-https://marcrubii.github.io/Mecalux-Pallet-Detection/
+https://marcrubii.github.io/AURION/
